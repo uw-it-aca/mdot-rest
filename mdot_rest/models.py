@@ -1,23 +1,43 @@
 from django.db import models
 
-class ResourceLink(models.Model):
+class Resource(models.Model):
     """ Represents metadata about a resource we want to direct users to.
     """
-    name = models.CharField(max_length=30)
-    # app_type = ?? related model?
-    short_desc = models.CharField(max_length=200) # can this be blank?
-    feature_desc = models.TextField()
-    # image = models.ImageField(upload_to=WHERE) # icon, instead? where to upload to?
-    # screenshots = related model??
-    # bundle = ?? # should this be a related model? tags?
-    web_url = models.URLField(blank=True)
-    iTunes_url = models.URLField(blank=True)
-    Google_Play_url = models.URLField(blank=True)
-    Windows_Store_url = models.URLField(blank=True)
-    # role_focus = ?? should this be a related model?
-    # school_focus = ?? related model?
-    # major_focus = ?? related model?
-    # class_standing_focus = ?? related model?
-    support_url = models.URLField(blank=True)
+    name = models.CharField(max_length=60)
+    slug = models.SlugField(max_length=60)
+    feature_desc = models.CharField(max_length=120)
+    featured = models.BooleanField(default=False)
+    accessible = models.BooleanField(default=False)
+    responsive_web = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+class IntendedAudience(models.Model):
+    """ Represents audiences we want to advertise the resource to. Examples
+        include affiliation (student, staff, faculty) or class standing
+        (freshman, sophomore, etc.)
+    """
+    resource = models.ManyToManyField('Resource')
+    name = models.CharField(max_length=30)
+    slug = models.SlugField(max_length=30)
+
+
+class ResourceLink(models.Model):
+    """ Represents a link to launch the resource, based on what sort of
+        device the link is displayed on.
+    """
+    ANDROID = 'AND'
+    IOS = 'IOS'
+    WEB = 'WEB'
+    WINDOWS_PHONE = 'WIP'
+    LINK_TYPE_CHOICES = (
+        (ANDROID, 'Android'),
+        (IOS, 'iOS'),
+        (WEB, 'Web'),
+        (WINDOWS_PHONE, 'Windows Phone'),
+    )
+    link_type = models.CharField(max_length=3, choices=LINK_TYPE_CHOICES)
+    resource = models.ManyToManyField('Resource')
+    title = models.CharField(max_length=60)
+    slug = models.SlugField(max_length=60)
+    url = models.URLField()
