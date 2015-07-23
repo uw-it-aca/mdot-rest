@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Resource(models.Model):
     """ Represents metadata about a resource we want to direct users to.
     """
@@ -14,6 +15,7 @@ class Resource(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 class IntendedAudience(models.Model):
     """ Represents audiences we want to advertise the resource to. Examples
@@ -43,10 +45,10 @@ class ResourceLink(models.Model):
         (WINDOWS_PHONE, 'Windows Phone'),
     )
     link_type = models.CharField(max_length=3, choices=LINK_TYPE_CHOICES)
-    resource = models.ManyToManyField('Resource')
+    resource = models.ForeignKey('Resource')
     title = models.CharField(max_length=60)
     slug = models.SlugField(max_length=60)
     url = models.URLField()
 
     def __unicode__(self):
-        return self.name
+        return "{0}: {1}".format(self.resource, self.link_type)
