@@ -29,6 +29,9 @@ class IntendedAudience(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        default_related_name = 'intended_audiences'
+
 
 class ResourceLink(models.Model):
     """ Represents a link to launch the resource, based on what sort of
@@ -52,3 +55,6 @@ class ResourceLink(models.Model):
 
     def __unicode__(self):
         return "{0}: {1}".format(self.resource, self.link_type)
+
+    class Meta:
+        default_related_name = 'resource_links'

@@ -15,9 +15,9 @@ class IntendedAudienceSerializer(serializers.ModelSerializer):
 
 
 class ResourceSerializer(serializers.ModelSerializer):
-    resourcelink_set = ResourceLinkSerializer(many=True, read_only=True)
-    intendedaudience_set = IntendedAudienceSerializer(many=True, read_only=True)
+    resource_links = ResourceLinkSerializer(many=True, read_only=True)
+    intended_audiences = IntendedAudienceSerializer(many=True, read_only=True)
 
     class Meta:
         model = Resource
-        fields = ('id', 'name', 'feature_desc', 'featured', 'accessible', 'responsive_web', 'resourcelink_set', 'intendedaudience_set', 'created_date', 'last_modified',)
+        fields = ('id', 'name', 'feature_desc', 'featured', 'accessible', 'responsive_web', 'resource_links', 'intended_audiences', 'created_date', 'last_modified',)
