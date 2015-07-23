@@ -12,6 +12,9 @@ class Resource(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
+    def __unicode__(self):
+        return self.name
+
 class IntendedAudience(models.Model):
     """ Represents audiences we want to advertise the resource to. Examples
         include affiliation (student, staff, faculty) or class standing
@@ -20,6 +23,9 @@ class IntendedAudience(models.Model):
     resource = models.ManyToManyField('Resource')
     name = models.CharField(max_length=30)
     slug = models.SlugField(max_length=30)
+
+    def __unicode__(self):
+        return self.name
 
 
 class ResourceLink(models.Model):
@@ -41,3 +47,6 @@ class ResourceLink(models.Model):
     title = models.CharField(max_length=60)
     slug = models.SlugField(max_length=60)
     url = models.URLField()
+
+    def __unicode__(self):
+        return self.name
