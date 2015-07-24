@@ -16,7 +16,7 @@ class Resource(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return self.name
+        return self.title
 
 
 class IntendedAudience(models.Model):
@@ -28,7 +28,7 @@ class IntendedAudience(models.Model):
     audience = models.CharField(max_length=30)
 
     def __unicode__(self):
-        return self.name
+        return self.audience
 
     class Meta:
         default_related_name = 'intended_audiences'
