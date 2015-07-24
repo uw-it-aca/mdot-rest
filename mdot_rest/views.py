@@ -8,7 +8,7 @@ import django_filters
 class ResourceFilter(django_filters.FilterSet):
     class Meta:
         model = Resource
-        fields = ('name', 'featured', 'accessible', 'responsive_web',)
+        fields = ('title', 'featured', 'accessible', 'responsive_web',)
 
 
 class ResourceList(generics.ListCreateAPIView):
