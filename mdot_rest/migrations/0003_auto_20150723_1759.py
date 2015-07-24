@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='resourcelink',
             name='resource',
-            field=models.ForeignKey(default='', to='mdot_rest.Resource'),
+            field=models.ForeignKey(default=1, to='mdot_rest.Resource'),
             preserve_default=False,
         ),
     ]
