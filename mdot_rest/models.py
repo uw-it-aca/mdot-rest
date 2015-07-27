@@ -50,7 +50,6 @@ class ResourceLink(models.Model):
     )
     link_type = models.CharField(max_length=3, choices=LINK_TYPE_CHOICES)
     resource = models.ForeignKey('Resource')
-    link_text = models.CharField(max_length=60)
     url = models.URLField()
 
     def __unicode__(self):
