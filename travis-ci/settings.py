@@ -39,11 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     #'compressor',
     #'templatetag_handlebars',
-    'easy_pjax',
+    #'easy_pjax',
     'rest_framework',
-    'mdotdevs',
+    #'mdotdevs',
     'mdot_rest',
-    'mdot',
+    #'mdot',
 )
 
 MIDDLEWARE_CLASSES = (
