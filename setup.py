@@ -11,14 +11,14 @@ setup(
     version='0.1',
     packages=['mdot_rest'],
     include_package_data=True,
-    install_requires = [
+    install_requires=[
         'setuptools',
         'django',
         'djangorestframework',
-        'markdown',
         'django-filter',
+        'Pillow',
     ],
-    license='Apache License, Version 2.0',  # example license
+    license='Apache License, Version 2.0',
     description='A RESTful API server for references to mobile resources.',
     long_description=README,
     url='',
@@ -28,7 +28,7 @@ setup(
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache Software License', # example license
+        'License :: OSI Approved :: Apache Software License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
