@@ -4,17 +4,19 @@ from django.db import models
 class Resource(models.Model):
     """ Represents metadata about a resource we want to direct users to.
     """
-    name = models.CharField(max_length=60)
-    slug = models.SlugField(max_length=60)
+    title = models.CharField(max_length=60)
     feature_desc = models.CharField(max_length=120)
     featured = models.BooleanField(default=False)
     accessible = models.BooleanField(default=False)
     responsive_web = models.BooleanField(default=False)
+    campus_seattle = models.BooleanField(default=False)
+    campus_tacoma = models.BooleanField(default=False)
+    campus_bothell = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return self.name
+        return self.title
 
 
 class IntendedAudience(models.Model):
@@ -23,11 +25,10 @@ class IntendedAudience(models.Model):
         (freshman, sophomore, etc.)
     """
     resource = models.ManyToManyField('Resource')
-    name = models.CharField(max_length=30)
-    slug = models.SlugField(max_length=30)
+    audience = models.CharField(max_length=30)
 
     def __unicode__(self):
-        return self.name
+        return self.audience
 
     class Meta:
         default_related_name = 'intended_audiences'
@@ -49,8 +50,7 @@ class ResourceLink(models.Model):
     )
     link_type = models.CharField(max_length=3, choices=LINK_TYPE_CHOICES)
     resource = models.ForeignKey('Resource')
-    title = models.CharField(max_length=60)
-    slug = models.SlugField(max_length=60)
+    link_text = models.CharField(max_length=60)
     url = models.URLField()
 
     def __unicode__(self):
