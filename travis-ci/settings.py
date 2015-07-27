@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'compressor',
+    #'compressor',
     'templatetag_handlebars',
     'easy_pjax',
     'rest_framework',
@@ -115,20 +115,20 @@ STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    'compressor.finders.CompressorFinder',
+    #'compressor.finders.CompressorFinder',
 )
 
-COMPRESS_ROOT = "/tmp/some/path/for/files"
-COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
-COMPRESS_ENABLED = False   # True if you want to compress your development build
-COMPRESS_OFFLINE = False   # True if you want to compress your build offline
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter'
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter',
-]
+#COMPRESS_ROOT = "/tmp/some/path/for/files"
+#COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
+#COMPRESS_ENABLED = False   # True if you want to compress your development build
+#COMPRESS_OFFLINE = False   # True if you want to compress your build offline
+#COMPRESS_CSS_FILTERS = [
+#    'compressor.filters.css_default.CssAbsoluteFilter',
+#    'compressor.filters.cssmin.CSSMinFilter'
+#]
+#COMPRESS_JS_FILTERS = [
+#    '#compressor.filters.jsmin.JSMinFilter',
+#]
 
 # devtools
 ACA_DEVTOOLS_ENABLED = True
