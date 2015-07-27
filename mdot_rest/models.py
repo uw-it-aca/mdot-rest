@@ -6,6 +6,7 @@ class Resource(models.Model):
     """
     title = models.CharField(max_length=60)
     feature_desc = models.CharField(max_length=120)
+    image = models.ImageField(upload_to='uploads', blank=True, null=True)
     featured = models.BooleanField(default=False)
     accessible = models.BooleanField(default=False)
     responsive_web = models.BooleanField(default=False)
@@ -50,7 +51,6 @@ class ResourceLink(models.Model):
     )
     link_type = models.CharField(max_length=3, choices=LINK_TYPE_CHOICES)
     resource = models.ForeignKey('Resource')
-    link_text = models.CharField(max_length=60)
     url = models.URLField()
 
     def __unicode__(self):
