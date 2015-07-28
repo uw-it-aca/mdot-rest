@@ -144,6 +144,15 @@ class ResourceTests(TestCase):
 
         self.assertEqual(json.loads(response.content), expected_response)
 
+    def test_complex_filter(self):
+        """
+        Get all the resources that satisfy a complex filter.
+        """
+        response = self.client.get('/api/v1/resources/?accessible=True&campus_seattle=True&responsive_web=True&featured=True&audience=Students')
+        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}]
+
+        self.assertEqual(json.loads(response.content), expected_response)
+
     def tearDown(self):
         """
         Destroys all the objects that were made for each test.
