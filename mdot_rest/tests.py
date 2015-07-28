@@ -156,10 +156,19 @@ class ResourceTests(TestCase):
 
     def test_put_to_api(self):
         """
-        The rest API is readonly, so an attempt at a put should return an unauthorized status.
+        The rest API is readonly, so an attempt at a put should return a forbidden status code.
         """
         new_resource = {u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}
         response = self.client.put('/api/v1/resources/', new_resource)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_post_to_api(self):
+        """
+        The rest API is readonly, so an attempt at a post should return a forbidden status code.
+        """
+        new_resource = {u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}
+
+        response = self.client.post('/api/v1/resources/', new_resource)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def tearDown(self):
