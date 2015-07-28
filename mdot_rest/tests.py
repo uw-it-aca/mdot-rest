@@ -171,6 +171,13 @@ class ResourceTests(TestCase):
         response = self.client.post('/api/v1/resources/', new_resource)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+    def test_delete_from_api(self):
+        """
+        The rest API is readonly, so an attempt to delete a resource should return a forbidden status code.
+        """
+        response = self.client.delete('/api/v1/resources/?title=ITConnect')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
     def tearDown(self):
         """
         Destroys all the objects that were made for each test.
