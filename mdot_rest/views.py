@@ -9,7 +9,16 @@ class ResourceFilter(filters.FilterSet):
 
     class Meta:
         model = Resource
-        fields = ('title', 'featured', 'accessible', 'responsive_web', 'audience', 'campus_bothell', 'campus_seattle', 'campus_tacoma',)
+        fields = (
+            'title',
+            'featured',
+            'accessible',
+            'responsive_web',
+            'audience',
+            'campus_bothell',
+            'campus_seattle',
+            'campus_tacoma',
+        )
 
 
 class ResourceList(generics.ListCreateAPIView):
