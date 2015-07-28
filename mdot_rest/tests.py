@@ -47,20 +47,20 @@ class ResourceTests(TestCase):
         Get the first resource in the database.
         """
         response = self.client.get('/api/v1/resources/1/', format='json')
-        expected_response = {
-            u'accessible': True,
-            u'campus_bothell': False,
-            u'campus_seattle': True,
-            u'campus_tacoma': False,
-            u'created_date': u'1945-11-03T12:03:34Z',
-            u'feature_desc': u'This is a test.',
-            u'featured': True,
-            u'id': 1,
-            u'intended_audiences': [{u'audience': u'Students'}],
-            u'last_modified': u'1945-11-03T12:03:34Z',
-            u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
-            u'responsive_web': True,
-            u'title': u'ITConnect'}
+        expected_response = {u'accessible': True,
+                             u'campus_bothell': False,
+                             u'campus_seattle': True,
+                             u'campus_tacoma': False,
+                             u'created_date': u'1945-11-03T12:03:34Z',
+                             u'feature_desc': u'This is a test.',
+                             u'featured': True,
+                             u'id': 1,
+                             u'intended_audiences': [{u'audience': u'Students'}],
+                             u'last_modified': u'1945-11-03T12:03:34Z',
+                             u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
+                             u'responsive_web': True,
+                             u'title': u'ITConnect'
+                             }
 
         self.assertEqual(json.loads(response.content), expected_response)
 
@@ -69,20 +69,20 @@ class ResourceTests(TestCase):
         Get resources that are accessible.
         """
         response = self.client.get('/api/v1/resources/?accessible=True', format='json')
-        expected_response = [{
-            u'accessible': True,
-            u'campus_bothell': False,
-            u'campus_seattle': True,
-            u'campus_tacoma': False,
-            u'created_date': u'1945-11-03T12:03:34Z',
-            u'feature_desc': u'This is a test.',
-            u'featured': True,
-            u'id': 1,
-            u'intended_audiences': [{u'audience': u'Students'}],
-            u'last_modified': u'1945-11-03T12:03:34Z',
-            u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
-            u'responsive_web': True,
-            u'title': u'ITConnect'}]
+        expected_response = [{u'accessible': True,
+                              u'campus_bothell': False,
+                              u'campus_seattle': True,
+                              u'campus_tacoma': False,
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'feature_desc': u'This is a test.',
+                              u'featured': True,
+                              u'id': 1,
+                              u'intended_audiences': [{u'audience': u'Students'}],
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
+                              u'responsive_web': True,
+                              u'title': u'ITConnect'
+                              }]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
@@ -91,7 +91,34 @@ class ResourceTests(TestCase):
         Get resources that are responsive.
         """
         response = self.client.get('/api/v1/resources/?responsive_web=True')
-        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}, {u'accessible': False, u'feature_desc': u'This is another test.', u'title': u'SpaceScout', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': True, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}], u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}], u'id': 2, u'campus_tacoma': True}]
+        expected_response = [{u'accessible': True,
+                              u'feature_desc': u'This is a test.',
+                              u'title': u'ITConnect',
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': False,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'id': 1,
+                              u'campus_tacoma': False
+                              },
+                             {u'accessible': False,
+                              u'feature_desc': u'This is another test.',
+                              u'title': u'SpaceScout',
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': True,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
+                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'id': 2,
+                              u'campus_tacoma': True
+                              }]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
@@ -100,47 +127,128 @@ class ResourceTests(TestCase):
         Get all the resources that are for seattle campus.
         """
         response = self.client.get('/api/v1/resources/?campus_seattle=True')
-        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}, {u'accessible': False, u'feature_desc': u'This is another test.', u'title': u'SpaceScout', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': True, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}], u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}], u'id': 2, u'campus_tacoma': True}]
+        expected_response = [{u'accessible': True,
+                              u'feature_desc': u'This is a test.',
+                              u'title': u'ITConnect',
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': False,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'id': 1,
+                              u'campus_tacoma': False
+                              },
+                             {u'accessible': False,
+                              u'feature_desc': u'This is another test.',
+                              u'title': u'SpaceScout',
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': True,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
+                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'id': 2,
+                              u'campus_tacoma': True
+                              }]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
     def test_get_featured_resource(self):
         """
-        Get all the resources that are for seattle campus.
+        Get all the resources that are flagged as featured.
         """
         response = self.client.get('/api/v1/resources/?featured=True')
-        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}, {u'accessible': False, u'feature_desc': u'This is another test.', u'title': u'SpaceScout', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': True, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}], u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}], u'id': 2, u'campus_tacoma': True}]
+        expected_response = [{u'accessible': True,
+                              u'feature_desc': u'This is a test.',
+                              u'title': u'ITConnect',
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': False,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'id': 1,
+                              u'campus_tacoma': False
+                              },
+                             {u'accessible': False,
+                              u'feature_desc': u'This is another test.',
+                              u'title': u'SpaceScout',
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': True,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
+                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'id': 2,
+                              u'campus_tacoma': True
+                              }]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
     def test_get_resource_by_title(self):
         """
-        Get all the resources that are for seattle campus.
+        Get a resource by its title.
         """
         response = self.client.get('/api/v1/resources/?title=ITConnect')
-        expected_response = [{
-            u'accessible': True,
-            u'campus_bothell': False,
-            u'campus_seattle': True,
-            u'campus_tacoma': False,
-            u'created_date': u'1945-11-03T12:03:34Z',
-            u'feature_desc': u'This is a test.',
-            u'featured': True,
-            u'id': 1,
-            u'intended_audiences': [{u'audience': u'Students'}],
-            u'last_modified': u'1945-11-03T12:03:34Z',
-            u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
-            u'responsive_web': True,
-            u'title': u'ITConnect'}]
+        expected_response = [{u'accessible': True,
+                              u'campus_bothell': False,
+                              u'campus_seattle': True,
+                              u'campus_tacoma': False,
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'feature_desc': u'This is a test.',
+                              u'featured': True,
+                              u'id': 1,
+                              u'intended_audiences': [{u'audience': u'Students'}],
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
+                              u'responsive_web': True,
+                              u'title': u'ITConnect'
+                              }]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
     def test_get_resource_by_audience(self):
         """
-        Get all the resources that are for seattle campus.
+        Get all the resources that are for an audience.
         """
         response = self.client.get('/api/v1/resources/?audience=Students')
-        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}, {u'accessible': False, u'feature_desc': u'This is another test.', u'title': u'SpaceScout', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': True, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}], u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}], u'id': 2, u'campus_tacoma': True}]
+        expected_response = [{u'accessible': True,
+                              u'feature_desc': u'This is a test.',
+                              u'title': u'ITConnect',
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': False,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'id': 1,
+                              u'campus_tacoma': False
+                              },
+                             {u'accessible': False,
+                              u'feature_desc': u'This is another test.',
+                              u'title': u'SpaceScout',
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': True,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
+                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'id': 2,
+                              u'campus_tacoma': True
+                              }]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
@@ -150,7 +258,20 @@ class ResourceTests(TestCase):
         """
         response = self.client.get('/api/v1/resources/?accessible=True&campus_seattle=True&responsive_web=True&featured=True&audience=Students')
 
-        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}]
+        expected_response = [{u'accessible': True,
+                              u'feature_desc': u'This is a test.',
+                              u'title': u'ITConnect',
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': False,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'id': 1,
+                              u'campus_tacoma': False
+                              }]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
@@ -158,7 +279,21 @@ class ResourceTests(TestCase):
         """
         The rest API is readonly, so an attempt at a put should return a forbidden status code.
         """
-        new_resource = {u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}
+        new_resource = {u'accessible': True,
+                        u'feature_desc': u'This is a test.',
+                        u'title': u'ITConnect',
+                        u'created_date': u'1945-11-03T12:03:34Z',
+                        u'campus_seattle': True,
+                        u'campus_bothell': False,
+                        u'responsive_web': True,
+                        u'featured': True,
+                        u'last_modified': u'1945-11-03T12:03:34Z',
+                        u'intended_audiences': [{u'audience': u'Students'}],
+                        u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                        u'id': 1,
+                        u'campus_tacoma': False
+                        }
+
         response = self.client.put('/api/v1/resources/', new_resource)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
@@ -166,7 +301,20 @@ class ResourceTests(TestCase):
         """
         The rest API is readonly, so an attempt at a post should return a forbidden status code.
         """
-        new_resource = {u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}
+        new_resource = {u'accessible': True,
+                        u'feature_desc': u'This is a test.',
+                        u'title': u'ITConnect',
+                        u'created_date': u'1945-11-03T12:03:34Z',
+                        u'campus_seattle': True,
+                        u'campus_bothell': False,
+                        u'responsive_web': True,
+                        u'featured': True,
+                        u'last_modified': u'1945-11-03T12:03:34Z',
+                        u'intended_audiences': [{u'audience': u'Students'}],
+                        u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                        u'id': 1,
+                        u'campus_tacoma': False
+                        }
 
         response = self.client.post('/api/v1/resources/', new_resource)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -182,7 +330,20 @@ class ResourceTests(TestCase):
         """
         The rest API is readonly, so an attempt to patch a resource should return a forbidden status code.
         """
-        new_resource = {u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}
+        new_resource = {u'accessible': True,
+                        u'feature_desc': u'This is a test.',
+                        u'title': u'ITConnect',
+                        u'created_date': u'1945-11-03T12:03:34Z',
+                        u'campus_seattle': True,
+                        u'campus_bothell': False,
+                        u'responsive_web': True,
+                        u'featured': True,
+                        u'last_modified': u'1945-11-03T12:03:34Z',
+                        u'intended_audiences': [{u'audience': u'Students'}],
+                        u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                        u'id': 1,
+                        u'campus_tacoma': False
+                        }
 
         response = self.client.patch('/api/v1/resources/', new_resource)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
