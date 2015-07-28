@@ -134,6 +134,28 @@ class ResourceTests(TestCase):
 
         self.assertEqual(json.loads(response.content), expected_response)
 
+    def test_get_resource_by_title(self):
+        """
+        Get all the resources that are for seattle campus.
+        """
+        response = self.client.get('/api/v1/resources/?title=ITConnect')
+        expected_response = [{
+            u'accessible': True,
+            u'campus_bothell': False,
+            u'campus_seattle': True,
+            u'campus_tacoma': False,
+            u'created_date': u'1945-11-03T12:03:34Z',
+            u'feature_desc': u'This is a test.',
+            u'featured': True,
+            u'id': 1,
+            u'intended_audiences': [{u'audience': u'Students'}],
+            u'last_modified': u'1945-11-03T12:03:34Z',
+            u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
+            u'responsive_web': True,
+            u'title': u'ITConnect'}]
+
+        self.assertEqual(json.loads(response.content), expected_response)
+
     def tearDown(self):
         """
         Destroys all the objects that were made for each test.
