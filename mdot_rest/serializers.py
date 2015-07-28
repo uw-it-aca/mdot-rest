@@ -5,7 +5,7 @@ from rest_framework import serializers
 class ResourceLinkSerializer(serializers.ModelSerializer):
     class Meta:
         model = ResourceLink
-        fields = ('link_type', 'link_text', 'url',)
+        fields = ('link_type', 'url',)
 
 
 class IntendedAudienceSerializer(serializers.ModelSerializer):
@@ -20,4 +20,18 @@ class ResourceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Resource
-        fields = ('id', 'title', 'feature_desc', 'featured', 'accessible', 'responsive_web', 'resource_links', 'intended_audiences', 'campus_bothell', 'campus_tacoma', 'campus_seattle', 'created_date', 'last_modified',)
+        fields = (
+            'id',
+            'title',
+            'feature_desc',
+            'featured',
+            'accessible',
+            'responsive_web',
+            'resource_links',
+            'intended_audiences',
+            'campus_bothell',
+            'campus_tacoma',
+            'campus_seattle',
+            'created_date',
+            'last_modified',
+        )
