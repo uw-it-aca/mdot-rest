@@ -11,7 +11,7 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py syncdb --noinput
 script:
-  - pep8 mdot_rest/ --exclude=migrations
+  - pep8 mdot_rest/ --ignore=E501 --exclude=migrations
   - coverage run --source=mdot_rest/ --omit=mdot_rest/migrations/* manage.py test mdot_rest
 after_script:
   - coveralls
