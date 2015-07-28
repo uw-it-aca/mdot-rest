@@ -14,13 +14,31 @@ class ResourceTests(TestCase):
             mock_now.return_value = self.default_date
 
             self.resource1 = resource_models.Resource.objects.create(title='ITConnect', feature_desc='This is a test.', featured=True, accessible=True, responsive_web=True, campus_seattle=True, campus_tacoma=False, campus_bothell=False)
+            self.resource2 = resource_models.Resource.objects.create(title='SpaceScout', feature_desc='This is another test.', featured=True, accessible=False, responsive_web=True, campus_seattle=True, campus_tacoma=True, campus_bothell=True)
+
             self.intended_audience1 = resource_models.IntendedAudience.objects.create(audience='Students')
+            self.intended_audience2 = resource_models.IntendedAudience.objects.create(audience='Developers')
+
             self.intended_audience1.save()
+            self.intended_audience2.save()
+
             self.intended_audience1.resource.add(self.resource1)
+            self.intended_audience1.resource.add(self.resource2)
+            self.intended_audience2.resource.add(self.resource2)
+
             self.resource_link1 = resource_models.ResourceLink.objects.create(link_type='IOS', resource=self.resource1, url='uw.edu/itconnect')
+            self.resource_link2 = resource_models.ResourceLink.objects.create(link_type='WEB', resource=self.resource2, url='spacescout.uw.edu')
+            self.resource_link3 = resource_models.ResourceLink.objects.create(link_type='IOS', resource=self.resource2, url='spacescout.ue.edu/ios')
+
             self.resource1.save()
+            self.resource2.save()
+
             self.intended_audience1.save()
+            self.intended_audience2.save()
+
             self.resource_link1.save()
+            self.resource_link2.save()
+            self.resource_link3.save()
 
         self.client = Client()
 
@@ -73,20 +91,7 @@ class ResourceTests(TestCase):
         Get resources that are responsive.
         """
         response = self.client.get('/api/v1/resources/?responsive_web=True')
-        expected_response = [{
-            u'accessible': True,
-            u'campus_bothell': False,
-            u'campus_seattle': True,
-            u'campus_tacoma': False,
-            u'created_date': u'1945-11-03T12:03:34Z',
-            u'feature_desc': u'This is a test.',
-            u'featured': True,
-            u'id': 1,
-            u'intended_audiences': [{u'audience': u'Students'}],
-            u'last_modified': u'1945-11-03T12:03:34Z',
-            u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
-            u'responsive_web': True,
-            u'title': u'ITConnect'}]
+        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}, {u'accessible': False, u'feature_desc': u'This is another test.', u'title': u'SpaceScout', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': True, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}], u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}], u'id': 2, u'campus_tacoma': True}]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
@@ -95,20 +100,7 @@ class ResourceTests(TestCase):
         Get all the resources that are for seattle campus.
         """
         response = self.client.get('/api/v1/resources/?campus_seattle=True')
-        expected_response = [{
-            u'accessible': True,
-            u'campus_bothell': False,
-            u'campus_seattle': True,
-            u'campus_tacoma': False,
-            u'created_date': u'1945-11-03T12:03:34Z',
-            u'feature_desc': u'This is a test.',
-            u'featured': True,
-            u'id': 1,
-            u'intended_audiences': [{u'audience': u'Students'}],
-            u'last_modified': u'1945-11-03T12:03:34Z',
-            u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
-            u'responsive_web': True,
-            u'title': u'ITConnect'}]
+        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}, {u'accessible': False, u'feature_desc': u'This is another test.', u'title': u'SpaceScout', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': True, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}], u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}], u'id': 2, u'campus_tacoma': True}]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
@@ -117,20 +109,7 @@ class ResourceTests(TestCase):
         Get all the resources that are for seattle campus.
         """
         response = self.client.get('/api/v1/resources/?featured=True')
-        expected_response = [{
-            u'accessible': True,
-            u'campus_bothell': False,
-            u'campus_seattle': True,
-            u'campus_tacoma': False,
-            u'created_date': u'1945-11-03T12:03:34Z',
-            u'feature_desc': u'This is a test.',
-            u'featured': True,
-            u'id': 1,
-            u'intended_audiences': [{u'audience': u'Students'}],
-            u'last_modified': u'1945-11-03T12:03:34Z',
-            u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
-            u'responsive_web': True,
-            u'title': u'ITConnect'}]
+        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}, {u'accessible': False, u'feature_desc': u'This is another test.', u'title': u'SpaceScout', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': True, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}], u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}], u'id': 2, u'campus_tacoma': True}]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
@@ -161,20 +140,7 @@ class ResourceTests(TestCase):
         Get all the resources that are for seattle campus.
         """
         response = self.client.get('/api/v1/resources/?audience=Students')
-        expected_response = [{
-            u'accessible': True,
-            u'campus_bothell': False,
-            u'campus_seattle': True,
-            u'campus_tacoma': False,
-            u'created_date': u'1945-11-03T12:03:34Z',
-            u'feature_desc': u'This is a test.',
-            u'featured': True,
-            u'id': 1,
-            u'intended_audiences': [{u'audience': u'Students'}],
-            u'last_modified': u'1945-11-03T12:03:34Z',
-            u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
-            u'responsive_web': True,
-            u'title': u'ITConnect'}]
+        expected_response = [{u'accessible': True, u'feature_desc': u'This is a test.', u'title': u'ITConnect', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': False, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}], u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}], u'id': 1, u'campus_tacoma': False}, {u'accessible': False, u'feature_desc': u'This is another test.', u'title': u'SpaceScout', u'created_date': u'1945-11-03T12:03:34Z', u'campus_seattle': True, u'campus_bothell': True, u'responsive_web': True, u'featured': True, u'last_modified': u'1945-11-03T12:03:34Z', u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}], u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}], u'id': 2, u'campus_tacoma': True}]
 
         self.assertEqual(json.loads(response.content), expected_response)
 
@@ -183,5 +149,11 @@ class ResourceTests(TestCase):
         Destroys all the objects that were made for each test.
         """
         self.resource1.delete()
+        self.resource2.delete()
+
         self.intended_audience1.delete()
+        self.intended_audience2.delete()
+
         self.resource_link1.delete()
+        self.resource_link2.delete()
+        self.resource_link3.delete()
