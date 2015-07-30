@@ -13,8 +13,8 @@ class ResourceTests(TestCase):
         with patch('django.utils.timezone.now') as mock_now:
             mock_now.return_value = self.default_date
 
-            self.resource1 = resource_models.Resource.objects.create(title='ITConnect', feature_desc='This is a test.', featured=True, accessible=True, responsive_web=True, campus_seattle=True, campus_tacoma=False, campus_bothell=False)
-            self.resource2 = resource_models.Resource.objects.create(title='SpaceScout', feature_desc='This is another test.', featured=True, accessible=False, responsive_web=True, campus_seattle=True, campus_tacoma=True, campus_bothell=True)
+            self.resource1 = resource_models.Resource.objects.create(title='ITConnect', feature_desc='This is a test.', featured=True, accessible=True, responsive_web=True, campus_seattle=True, campus_tacoma=False, campus_bothell=False, image=None)
+            self.resource2 = resource_models.Resource.objects.create(title='SpaceScout', feature_desc='This is another test.', featured=True, accessible=False, responsive_web=True, campus_seattle=True, campus_tacoma=True, campus_bothell=True, image=None)
 
             self.intended_audience1 = resource_models.IntendedAudience.objects.create(audience='Students')
             self.intended_audience2 = resource_models.IntendedAudience.objects.create(audience='Developers')
@@ -55,6 +55,7 @@ class ResourceTests(TestCase):
                              u'feature_desc': u'This is a test.',
                              u'featured': True,
                              u'id': 1,
+                             u'image': None,
                              u'intended_audiences': [{u'audience': u'Students'}],
                              u'last_modified': u'1945-11-03T12:03:34Z',
                              u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
@@ -62,7 +63,7 @@ class ResourceTests(TestCase):
                              u'title': u'ITConnect'
                              }
 
-        self.assertEqual(json.loads(response.content), expected_response)
+        self.assertTrue(json.loads(response.content) == expected_response)
 
     def test_get_accessible_resource(self):
         """
@@ -77,6 +78,7 @@ class ResourceTests(TestCase):
                               u'feature_desc': u'This is a test.',
                               u'featured': True,
                               u'id': 1,
+                              u'image': None,
                               u'intended_audiences': [{u'audience': u'Students'}],
                               u'last_modified': u'1945-11-03T12:03:34Z',
                               u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
@@ -84,7 +86,7 @@ class ResourceTests(TestCase):
                               u'title': u'ITConnect'
                               }]
 
-        self.assertEqual(json.loads(response.content), expected_response)
+        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
 
     def test_get_responsive_resources(self):
         """
@@ -94,6 +96,7 @@ class ResourceTests(TestCase):
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
                               u'title': u'ITConnect',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
                               u'campus_seattle': True,
                               u'campus_bothell': False,
@@ -108,6 +111,7 @@ class ResourceTests(TestCase):
                              {u'accessible': False,
                               u'feature_desc': u'This is another test.',
                               u'title': u'SpaceScout',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
                               u'campus_seattle': True,
                               u'campus_bothell': True,
@@ -120,7 +124,7 @@ class ResourceTests(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertEqual(json.loads(response.content), expected_response)
+        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
 
     def test_get_seattle_resource(self):
         """
@@ -130,6 +134,7 @@ class ResourceTests(TestCase):
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
                               u'title': u'ITConnect',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
                               u'campus_seattle': True,
                               u'campus_bothell': False,
@@ -144,6 +149,7 @@ class ResourceTests(TestCase):
                              {u'accessible': False,
                               u'feature_desc': u'This is another test.',
                               u'title': u'SpaceScout',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
                               u'campus_seattle': True,
                               u'campus_bothell': True,
@@ -156,7 +162,7 @@ class ResourceTests(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertEqual(json.loads(response.content), expected_response)
+        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
 
     def test_get_featured_resource(self):
         """
@@ -166,6 +172,7 @@ class ResourceTests(TestCase):
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
                               u'title': u'ITConnect',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
                               u'campus_seattle': True,
                               u'campus_bothell': False,
@@ -180,6 +187,7 @@ class ResourceTests(TestCase):
                              {u'accessible': False,
                               u'feature_desc': u'This is another test.',
                               u'title': u'SpaceScout',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
                               u'campus_seattle': True,
                               u'campus_bothell': True,
@@ -192,29 +200,29 @@ class ResourceTests(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertEqual(json.loads(response.content), expected_response)
+        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
 
     def test_get_resource_by_title(self):
         """
         Get a resource by its title.
         """
         response = self.client.get('/api/v1/resources/?title=ITConnect')
-        expected_response = [{u'accessible': True,
-                              u'campus_bothell': False,
-                              u'campus_seattle': True,
-                              u'campus_tacoma': False,
+        expected_response = [{u'accessible': False,
+                              u'feature_desc': u'This is another test.',
+                              u'title': u'SpaceScout',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
-                              u'feature_desc': u'This is a test.',
-                              u'featured': True,
-                              u'id': 1,
-                              u'intended_audiences': [{u'audience': u'Students'}],
-                              u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
+                              u'campus_seattle': True,
+                              u'campus_bothell': True,
                               u'responsive_web': True,
-                              u'title': u'ITConnect'
-                              }]
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
+                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'id': 2,
+                              u'campus_tacoma': True}]
 
-        self.assertEqual(json.loads(response.content), expected_response)
+        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
 
     def test_get_resource_by_audience(self):
         """
@@ -224,6 +232,7 @@ class ResourceTests(TestCase):
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
                               u'title': u'ITConnect',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
                               u'campus_seattle': True,
                               u'campus_bothell': False,
@@ -238,6 +247,7 @@ class ResourceTests(TestCase):
                              {u'accessible': False,
                               u'feature_desc': u'This is another test.',
                               u'title': u'SpaceScout',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
                               u'campus_seattle': True,
                               u'campus_bothell': True,
@@ -250,7 +260,7 @@ class ResourceTests(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertEqual(json.loads(response.content), expected_response)
+        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
 
     def test_complex_filter(self):
         """
@@ -261,6 +271,7 @@ class ResourceTests(TestCase):
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
                               u'title': u'ITConnect',
+                              u'image': None,
                               u'created_date': u'1945-11-03T12:03:34Z',
                               u'campus_seattle': True,
                               u'campus_bothell': False,
@@ -273,7 +284,7 @@ class ResourceTests(TestCase):
                               u'campus_tacoma': False
                               }]
 
-        self.assertEqual(json.loads(response.content), expected_response)
+        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
 
     def test_put_to_api(self):
         """

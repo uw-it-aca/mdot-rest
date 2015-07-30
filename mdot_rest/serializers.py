@@ -24,6 +24,7 @@ class ResourceSerializer(serializers.ModelSerializer):
             'id',
             'title',
             'feature_desc',
+            'image',
             'featured',
             'accessible',
             'responsive_web',
