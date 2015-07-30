@@ -1,4 +1,4 @@
-from .models import Resource, ResourceLink, IntendedAudience
+from .models import UWResource, ResourceLink, IntendedAudience
 from rest_framework import serializers
 
 
@@ -14,12 +14,12 @@ class IntendedAudienceSerializer(serializers.ModelSerializer):
         fields = ('audience',)
 
 
-class ResourceSerializer(serializers.ModelSerializer):
+class UWResourceSerializer(serializers.ModelSerializer):
     resource_links = ResourceLinkSerializer(many=True, read_only=True)
     intended_audiences = IntendedAudienceSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Resource
+        model = UWResource
         fields = (
             'id',
             'title',

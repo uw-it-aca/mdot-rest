@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Resource(models.Model):
+class UWResource(models.Model):
     """ Represents metadata about a resource we want to direct users to.
     """
     title = models.CharField(max_length=60)
@@ -25,7 +25,7 @@ class IntendedAudience(models.Model):
         include affiliation (student, staff, faculty) or class standing
         (freshman, sophomore, etc.)
     """
-    resource = models.ManyToManyField('Resource')
+    resource = models.ManyToManyField('UWResource')
     audience = models.CharField(max_length=30)
 
     def __unicode__(self):
@@ -50,7 +50,7 @@ class ResourceLink(models.Model):
         (WINDOWS_PHONE, 'Windows Phone'),
     )
     link_type = models.CharField(max_length=3, choices=LINK_TYPE_CHOICES)
-    resource = models.ForeignKey('Resource')
+    resource = models.ForeignKey('UWResource')
     url = models.URLField()
 
     def __unicode__(self):

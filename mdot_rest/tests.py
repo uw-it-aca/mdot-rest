@@ -13,8 +13,8 @@ class ResourceTests(TestCase):
         with patch('django.utils.timezone.now') as mock_now:
             mock_now.return_value = self.default_date
 
-            self.resource1 = resource_models.Resource.objects.create(title='ITConnect', feature_desc='This is a test.', featured=True, accessible=True, responsive_web=True, campus_seattle=True, campus_tacoma=False, campus_bothell=False)
-            self.resource2 = resource_models.Resource.objects.create(title='SpaceScout', feature_desc='This is another test.', featured=True, accessible=False, responsive_web=True, campus_seattle=True, campus_tacoma=True, campus_bothell=True)
+            self.resource1 = resource_models.UWResource.objects.create(title='ITConnect', feature_desc='This is a test.', featured=True, accessible=True, responsive_web=True, campus_seattle=True, campus_tacoma=False, campus_bothell=False)
+            self.resource2 = resource_models.UWResource.objects.create(title='SpaceScout', feature_desc='This is another test.', featured=True, accessible=False, responsive_web=True, campus_seattle=True, campus_tacoma=True, campus_bothell=True)
 
             self.intended_audience1 = resource_models.IntendedAudience.objects.create(audience='Students')
             self.intended_audience2 = resource_models.IntendedAudience.objects.create(audience='Developers')

@@ -1,14 +1,14 @@
 import django_filters as filters
-from .models import Resource, IntendedAudience
-from .serializers import ResourceSerializer
+from .models import UWResource, IntendedAudience
+from .serializers import UWResourceSerializer
 from rest_framework import generics, permissions
 
 
-class ResourceFilter(filters.FilterSet):
+class UWResourceFilter(filters.FilterSet):
     audience = filters.CharFilter(name='intendedaudience__audience')
 
     class Meta:
-        model = Resource
+        model = UWResource
         fields = (
             'title',
             'featured',
@@ -21,14 +21,14 @@ class ResourceFilter(filters.FilterSet):
         )
 
 
-class ResourceList(generics.ListCreateAPIView):
-    queryset = Resource.objects.all()
-    serializer_class = ResourceSerializer
+class UWResourceList(generics.ListCreateAPIView):
+    queryset = UWResource.objects.all()
+    serializer_class = UWResourceSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    filter_class = ResourceFilter
+    filter_class = UWResourceFilter
 
 
-class ResourceDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Resource.objects.all()
-    serializer_class = ResourceSerializer
+class UWResourceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UWResource.objects.all()
+    serializer_class = UWResourceSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
