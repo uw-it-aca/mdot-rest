@@ -13,8 +13,8 @@ class ResourceTests(TestCase):
         with patch('django.utils.timezone.now') as mock_now:
             mock_now.return_value = self.default_date
 
-            self.resource1 = resource_models.Resource.objects.create(title='ITConnect', feature_desc='This is a test.', featured=True, accessible=True, responsive_web=True, campus_seattle=True, campus_tacoma=False, campus_bothell=False, image=None)
-            self.resource2 = resource_models.Resource.objects.create(title='SpaceScout', feature_desc='This is another test.', featured=True, accessible=False, responsive_web=True, campus_seattle=True, campus_tacoma=True, campus_bothell=True, image=None)
+            self.resource1 = resource_models.UWResource.objects.create(title='ITConnect', feature_desc='This is a test.', featured=True, accessible=True, responsive_web=True, campus_seattle=True, campus_tacoma=False, campus_bothell=False)
+            self.resource2 = resource_models.UWResource.objects.create(title='SpaceScout', feature_desc='This is another test.', featured=True, accessible=False, responsive_web=True, campus_seattle=True, campus_tacoma=True, campus_bothell=True)
 
             self.intended_audience1 = resource_models.IntendedAudience.objects.create(audience='Students')
             self.intended_audience2 = resource_models.IntendedAudience.objects.create(audience='Developers')
@@ -46,7 +46,7 @@ class ResourceTests(TestCase):
         """
         Get the first resource in the database.
         """
-        response = self.client.get('/api/v1/resources/1/', format='json')
+        response = self.client.get('/api/v1/uwresources/1/', format='json')
         expected_response = {u'accessible': True,
                              u'campus_bothell': False,
                              u'campus_seattle': True,
@@ -69,7 +69,7 @@ class ResourceTests(TestCase):
         """
         Get resources that are accessible.
         """
-        response = self.client.get('/api/v1/resources/?accessible=True', format='json')
+        response = self.client.get('/api/v1/uwresources/?accessible=True', format='json')
         expected_response = [{u'accessible': True,
                               u'campus_bothell': False,
                               u'campus_seattle': True,
@@ -92,7 +92,7 @@ class ResourceTests(TestCase):
         """
         Get resources that are responsive.
         """
-        response = self.client.get('/api/v1/resources/?responsive_web=True')
+        response = self.client.get('/api/v1/uwresources/?responsive_web=True')
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
                               u'title': u'ITConnect',
@@ -130,7 +130,7 @@ class ResourceTests(TestCase):
         """
         Get all the resources that are for seattle campus.
         """
-        response = self.client.get('/api/v1/resources/?campus_seattle=True')
+        response = self.client.get('/api/v1/uwresources/?campus_seattle=True')
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
                               u'title': u'ITConnect',
@@ -168,7 +168,7 @@ class ResourceTests(TestCase):
         """
         Get all the resources that are flagged as featured.
         """
-        response = self.client.get('/api/v1/resources/?featured=True')
+        response = self.client.get('/api/v1/uwresources/?featured=True')
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
                               u'title': u'ITConnect',
@@ -206,7 +206,7 @@ class ResourceTests(TestCase):
         """
         Get a resource by its title.
         """
-        response = self.client.get('/api/v1/resources/?title=ITConnect')
+        response = self.client.get('/api/v1/uwresources/?title=ITConnect')
         expected_response = [{u'accessible': False,
                               u'feature_desc': u'This is another test.',
                               u'title': u'SpaceScout',
@@ -228,7 +228,7 @@ class ResourceTests(TestCase):
         """
         Get all the resources that are for an audience.
         """
-        response = self.client.get('/api/v1/resources/?audience=Students')
+        response = self.client.get('/api/v1/uwresources/?audience=Students')
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
                               u'title': u'ITConnect',
@@ -266,7 +266,7 @@ class ResourceTests(TestCase):
         """
         Get all the resources that satisfy a complex filter.
         """
-        response = self.client.get('/api/v1/resources/?accessible=True&campus_seattle=True&responsive_web=True&featured=True&audience=Students')
+        response = self.client.get('/api/v1/uwresources/?accessible=True&campus_seattle=True&responsive_web=True&featured=True&audience=Students')
 
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
@@ -305,7 +305,7 @@ class ResourceTests(TestCase):
                         u'campus_tacoma': False
                         }
 
-        response = self.client.put('/api/v1/resources/', new_resource)
+        response = self.client.put('/api/v1/uwresources/', new_resource)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_post_to_api(self):
@@ -327,14 +327,14 @@ class ResourceTests(TestCase):
                         u'campus_tacoma': False
                         }
 
-        response = self.client.post('/api/v1/resources/', new_resource)
+        response = self.client.post('/api/v1/uwresources/', new_resource)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_delete_from_api(self):
         """
         The rest API is readonly, so an attempt to delete a resource should return a forbidden status code.
         """
-        response = self.client.delete('/api/v1/resources/?title=ITConnect')
+        response = self.client.delete('/api/v1/uwresources/?title=ITConnect')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_patch_to_api(self):
@@ -356,7 +356,7 @@ class ResourceTests(TestCase):
                         u'campus_tacoma': False
                         }
 
-        response = self.client.patch('/api/v1/resources/', new_resource)
+        response = self.client.patch('/api/v1/uwresources/', new_resource)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def tearDown(self):

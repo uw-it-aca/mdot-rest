@@ -23,6 +23,6 @@ class ResourceLinkInLine(admin.TabularInline):
     max_num = 4
 
 
-@admin.register(Resource)
-class ResourceAdmin(admin.ModelAdmin):
+@admin.register(UWResource)
+class UWResourceAdmin(admin.ModelAdmin):
     inlines = [ResourceLinkInLine, IntendedAudienceInline]
