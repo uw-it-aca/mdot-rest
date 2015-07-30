@@ -2,16 +2,27 @@ from django.contrib import admin
 from .models import *
 
 
-@admin.register(Resource)
-class ResourceAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(IntendedAudience)
 class IntendedAudienceAdmin(admin.ModelAdmin):
     pass
 
 
+class IntendedAudienceInline(admin.TabularInline):
+    model = IntendedAudience.resource.through
+    extra = 0
+
+
 @admin.register(ResourceLink)
 class ResourceLinkAdmin(admin.ModelAdmin):
-    pass
+    model = ResourceLink
+
+
+class ResourceLinkInLine(admin.TabularInline):
+    model = ResourceLink
+    extra = 0
+    max_num = 4
+
+
+@admin.register(Resource)
+class ResourceAdmin(admin.ModelAdmin):
+    inlines = [ResourceLinkInLine, IntendedAudienceInline]
