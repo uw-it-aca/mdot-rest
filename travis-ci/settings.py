@@ -37,13 +37,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'compressor',
-    #'templatetag_handlebars',
-    #'easy_pjax',
+    # 'compressor',
+    # 'templatetag_handlebars',
+    # 'easy_pjax',
     'rest_framework',
-    #'mdotdevs',
+    # 'mdotdevs',
     'mdot_rest',
-    #'mdot',
+    # 'mdot',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    #'django_mobileesp.middleware.UserAgentDetectionMiddleware',
+    # 'django_mobileesp.middleware.UserAgentDetectionMiddleware',
 )
 
 ROOT_URLCONF = 'travis-ci.urls'
@@ -115,35 +115,35 @@ STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    #'compressor.finders.CompressorFinder',
+    # 'compressor.finders.CompressorFinder',
 )
 
-#COMPRESS_ROOT = "/tmp/some/path/for/files"
-#COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
-#COMPRESS_ENABLED = False   # True if you want to compress your development build
-#COMPRESS_OFFLINE = False   # True if you want to compress your build offline
-#COMPRESS_CSS_FILTERS = [
+# COMPRESS_ROOT = "/tmp/some/path/for/files"
+# COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
+# COMPRESS_ENABLED = False   # True if you want to compress your development build
+# COMPRESS_OFFLINE = False   # True if you want to compress your build offline
+# COMPRESS_CSS_FILTERS = [
 #    'compressor.filters.css_default.CssAbsoluteFilter',
 #    'compressor.filters.cssmin.CSSMinFilter'
-#]
-#COMPRESS_JS_FILTERS = [
+# ]
+# COMPRESS_JS_FILTERS = [
 #    '#compressor.filters.jsmin.JSMinFilter',
-#]
+# ]
 
 # devtools
 ACA_DEVTOOLS_ENABLED = True
 
 # mobileesp
-#from django_mobileesp.detector import mobileesp_agent as agent
+# from django_mobileesp.detector import mobileesp_agent as agent
 #
-#DETECT_USER_AGENTS = {
+# DETECT_USER_AGENTS = {
 #    'is_android': agent.detectAndroid,
 #    'is_ios': agent.detectIos,
 #    'is_windows_phone': agent.detectWindowsPhone,
 #    'is_tablet' : agent.detectTierTablet,
 #    'is_mobile': agent.detectMobileQuick,
-#}
+# }
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('rest_framework_filters.backends.DjangoFilterBackend',),
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
 }
