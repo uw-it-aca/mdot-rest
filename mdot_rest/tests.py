@@ -13,11 +13,31 @@ class ResourceTests(TestCase):
         with patch('django.utils.timezone.now') as mock_now:
             mock_now.return_value = self.default_date
 
-            self.resource1 = resource_models.UWResource.objects.create(title='ITConnect', feature_desc='This is a test.', featured=True, accessible=True, responsive_web=True, campus_seattle=True, campus_tacoma=False, campus_bothell=False)
-            self.resource2 = resource_models.UWResource.objects.create(title='SpaceScout', feature_desc='This is another test.', featured=True, accessible=False, responsive_web=True, campus_seattle=True, campus_tacoma=True, campus_bothell=True)
+            self.resource1 = resource_models.UWResource.objects.create(
+                title='ITConnect',
+                feature_desc='This is a test.',
+                featured=True,
+                accessible=True,
+                responsive_web=True,
+                campus_seattle=True,
+                campus_tacoma=False,
+                campus_bothell=False)
+            self.resource2 = resource_models.UWResource.objects.create(
+                title='SpaceScout',
+                feature_desc='This is another test.',
+                featured=True,
+                accessible=False,
+                responsive_web=True,
+                campus_seattle=True,
+                campus_tacoma=True,
+                campus_bothell=True)
 
-            self.intended_audience1 = resource_models.IntendedAudience.objects.create(audience='Students')
-            self.intended_audience2 = resource_models.IntendedAudience.objects.create(audience='Developers')
+            self.intended_audience1 = \
+                resource_models.IntendedAudience.objects.create(
+                    audience='Students')
+            self.intended_audience2 = \
+                resource_models.IntendedAudience.objects.create(
+                    audience='Developers')
 
             self.intended_audience1.save()
             self.intended_audience2.save()
@@ -26,9 +46,18 @@ class ResourceTests(TestCase):
             self.intended_audience1.resource.add(self.resource2)
             self.intended_audience2.resource.add(self.resource2)
 
-            self.resource_link1 = resource_models.ResourceLink.objects.create(link_type='IOS', resource=self.resource1, url='uw.edu/itconnect')
-            self.resource_link2 = resource_models.ResourceLink.objects.create(link_type='WEB', resource=self.resource2, url='spacescout.uw.edu')
-            self.resource_link3 = resource_models.ResourceLink.objects.create(link_type='IOS', resource=self.resource2, url='spacescout.ue.edu/ios')
+            self.resource_link1 = resource_models.ResourceLink.objects.create(
+                link_type='IOS',
+                resource=self.resource1,
+                url='uw.edu/itconnect')
+            self.resource_link2 = resource_models.ResourceLink.objects.create(
+                link_type='WEB',
+                resource=self.resource2,
+                url='spacescout.uw.edu')
+            self.resource_link3 = resource_models.ResourceLink.objects.create(
+                link_type='IOS',
+                resource=self.resource2,
+                url='spacescout.ue.edu/ios')
 
             self.resource1.save()
             self.resource2.save()
@@ -56,9 +85,12 @@ class ResourceTests(TestCase):
                              u'featured': True,
                              u'id': 1,
                              u'image': None,
-                             u'intended_audiences': [{u'audience': u'Students'}],
+                             u'intended_audiences': [{u'audience':
+                                                      u'Students'}],
                              u'last_modified': u'1945-11-03T12:03:34Z',
-                             u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
+                             u'resource_links': [{u'link_type': u'IOS',
+                                                  u'url':
+                                                  u'uw.edu/itconnect'}],
                              u'responsive_web': True,
                              u'title': u'ITConnect'
                              }
@@ -69,7 +101,8 @@ class ResourceTests(TestCase):
         """
         Get resources that are accessible.
         """
-        response = self.client.get('/api/v1/uwresources/?accessible=True', format='json')
+        response = self.client.get('/api/v1/uwresources/?accessible=True',
+                                   format='json')
         expected_response = [{u'accessible': True,
                               u'campus_bothell': False,
                               u'campus_seattle': True,
@@ -79,14 +112,18 @@ class ResourceTests(TestCase):
                               u'featured': True,
                               u'id': 1,
                               u'image': None,
-                              u'intended_audiences': [{u'audience': u'Students'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'}],
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'resource_links': [{u'link_type': u'IOS', u'url': u'uw.edu/itconnect'}],
+                              u'resource_links': [{u'link_type': u'IOS',
+                                                   u'url':
+                                                   u'uw.edu/itconnect'}],
                               u'responsive_web': True,
                               u'title': u'ITConnect'
                               }]
 
-        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
+        self.assertTrue(json.loads(response.content).sort() ==
+                        expected_response.sort())
 
     def test_get_responsive_resources(self):
         """
@@ -103,8 +140,10 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}],
-                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect',
+                                                   u'link_type': u'IOS'}],
                               u'id': 1,
                               u'campus_tacoma': False
                               },
@@ -118,13 +157,22 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
-                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'},
+                                                      {u'audience':
+                                                       u'Developers'}],
+                              u'resource_links': [{u'url':
+                                                   u'spacescout.uw.edu',
+                                                   u'link_type': u'WEB'},
+                                                  {u'url':
+                                                   u'spacescout.ue.edu/ios',
+                                                   u'link_type': u'IOS'}],
                               u'id': 2,
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
+        self.assertTrue(json.loads(response.content).sort() ==
+                        expected_response.sort())
 
     def test_get_seattle_resource(self):
         """
@@ -141,8 +189,10 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}],
-                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect',
+                                                   u'link_type': u'IOS'}],
                               u'id': 1,
                               u'campus_tacoma': False
                               },
@@ -156,13 +206,22 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
-                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'},
+                                                      {u'audience':
+                                                       u'Developers'}],
+                              u'resource_links': [{u'url':
+                                                   u'spacescout.uw.edu',
+                                                   u'link_type': u'WEB'},
+                                                  {u'url':
+                                                   u'spacescout.ue.edu/ios',
+                                                   u'link_type': u'IOS'}],
                               u'id': 2,
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
+        self.assertTrue(json.loads(response.content).sort() ==
+                        expected_response.sort())
 
     def test_get_featured_resource(self):
         """
@@ -179,8 +238,12 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}],
-                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'}],
+                              u'resource_links': [{u'url':
+                                                   u'uw.edu/itconnect',
+                                                   u'link_type':
+                                                   u'IOS'}],
                               u'id': 1,
                               u'campus_tacoma': False
                               },
@@ -194,13 +257,22 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
-                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'},
+                                                      {u'audience':
+                                                       u'Developers'}],
+                              u'resource_links': [{u'url':
+                                                   u'spacescout.uw.edu',
+                                                   u'link_type': u'WEB'},
+                                                  {u'url':
+                                                   u'spacescout.ue.edu/ios',
+                                                   u'link_type': u'IOS'}],
                               u'id': 2,
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
+        self.assertTrue(json.loads(response.content).sort() ==
+                        expected_response.sort())
 
     def test_get_resource_by_title(self):
         """
@@ -217,12 +289,21 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
-                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'},
+                                                      {u'audience':
+                                                       u'Developers'}],
+                              u'resource_links': [{u'url':
+                                                   u'spacescout.uw.edu',
+                                                   u'link_type': u'WEB'},
+                                                  {u'url':
+                                                   u'spacescout.ue.edu/ios',
+                                                   u'link_type': u'IOS'}],
                               u'id': 2,
                               u'campus_tacoma': True}]
 
-        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
+        self.assertTrue(json.loads(response.content).sort() ==
+                        expected_response.sort())
 
     def test_get_resource_by_audience(self):
         """
@@ -239,8 +320,10 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}],
-                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect',
+                                                   u'link_type': u'IOS'}],
                               u'id': 1,
                               u'campus_tacoma': False
                               },
@@ -254,19 +337,30 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}, {u'audience': u'Developers'}],
-                              u'resource_links': [{u'url': u'spacescout.uw.edu', u'link_type': u'WEB'}, {u'url': u'spacescout.ue.edu/ios', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'},
+                                                      {u'audience':
+                                                       u'Developers'}],
+                              u'resource_links': [{u'url':
+                                                   u'spacescout.uw.edu',
+                                                   u'link_type': u'WEB'},
+                                                  {u'url':
+                                                   u'spacescout.ue.edu/ios',
+                                                   u'link_type': u'IOS'}],
                               u'id': 2,
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
+        self.assertTrue(json.loads(response.content).sort() ==
+                        expected_response.sort())
 
     def test_complex_filter(self):
         """
         Get all the resources that satisfy a complex filter.
         """
-        response = self.client.get('/api/v1/uwresources/?accessible=True&campus_seattle=True&responsive_web=True&featured=True&audience=Students')
+        response = self.client.get(
+            '/api/v1/uwresources/?accessible=True&campus_seattle=True&\
+            responsive_web=True&featured=True&audience=Students')
 
         expected_response = [{u'accessible': True,
                               u'feature_desc': u'This is a test.',
@@ -278,17 +372,21 @@ class ResourceTests(TestCase):
                               u'responsive_web': True,
                               u'featured': True,
                               u'last_modified': u'1945-11-03T12:03:34Z',
-                              u'intended_audiences': [{u'audience': u'Students'}],
-                              u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect',
+                                                   u'link_type': u'IOS'}],
                               u'id': 1,
                               u'campus_tacoma': False
                               }]
 
-        self.assertTrue(json.loads(response.content).sort() == expected_response.sort())
+        self.assertTrue(json.loads(response.content).sort() ==
+                        expected_response.sort())
 
     def test_put_to_api(self):
         """
-        The rest API is readonly, so an attempt at a put should return a forbidden status code.
+        The rest API is readonly, so an attempt at a put should return a
+        forbidden status code.
         """
         new_resource = {u'accessible': True,
                         u'feature_desc': u'This is a test.',
@@ -300,7 +398,8 @@ class ResourceTests(TestCase):
                         u'featured': True,
                         u'last_modified': u'1945-11-03T12:03:34Z',
                         u'intended_audiences': [{u'audience': u'Students'}],
-                        u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                        u'resource_links': [{u'url': u'uw.edu/itconnect',
+                                             u'link_type': u'IOS'}],
                         u'id': 1,
                         u'campus_tacoma': False
                         }
@@ -310,7 +409,8 @@ class ResourceTests(TestCase):
 
     def test_post_to_api(self):
         """
-        The rest API is readonly, so an attempt at a post should return a forbidden status code.
+        The rest API is readonly, so an attempt at a post should return a
+        forbidden status code.
         """
         new_resource = {u'accessible': True,
                         u'feature_desc': u'This is a test.',
@@ -322,7 +422,8 @@ class ResourceTests(TestCase):
                         u'featured': True,
                         u'last_modified': u'1945-11-03T12:03:34Z',
                         u'intended_audiences': [{u'audience': u'Students'}],
-                        u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                        u'resource_links': [{u'url': u'uw.edu/itconnect',
+                                             u'link_type': u'IOS'}],
                         u'id': 1,
                         u'campus_tacoma': False
                         }
@@ -332,14 +433,16 @@ class ResourceTests(TestCase):
 
     def test_delete_from_api(self):
         """
-        The rest API is readonly, so an attempt to delete a resource should return a forbidden status code.
+        The rest API is readonly, so an attempt to delete a resource should
+        return a forbidden status code.
         """
         response = self.client.delete('/api/v1/uwresources/?title=ITConnect')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_patch_to_api(self):
         """
-        The rest API is readonly, so an attempt to patch a resource should return a forbidden status code.
+        The rest API is readonly, so an attempt to patch a resource should
+        return a forbidden status code.
         """
         new_resource = {u'accessible': True,
                         u'feature_desc': u'This is a test.',
@@ -351,7 +454,8 @@ class ResourceTests(TestCase):
                         u'featured': True,
                         u'last_modified': u'1945-11-03T12:03:34Z',
                         u'intended_audiences': [{u'audience': u'Students'}],
-                        u'resource_links': [{u'url': u'uw.edu/itconnect', u'link_type': u'IOS'}],
+                        u'resource_links': [{u'url': u'uw.edu/itconnect',
+                                             u'link_type': u'IOS'}],
                         u'id': 1,
                         u'campus_tacoma': False
                         }
