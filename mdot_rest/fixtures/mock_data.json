@@ -1,1 +1,139 @@
-[{"fields": {"accessible": false, "feature_desc": "UW Directory", "title": "UW Directory", "image": "", "campus_seattle": true, "campus_bothell": false, "responsive_web": true, "featured": true, "last_modified": "2015-08-05T18:32:00.574Z", "created_date": "2015-08-05T18:29:08.532Z", "campus_tacoma": false}, "model": "mdot_rest.uwresource", "pk": 1}, {"fields": {"accessible": false, "feature_desc": "Maps", "title": "Maps", "image": "", "campus_seattle": true, "campus_bothell": false, "responsive_web": true, "featured": true, "last_modified": "2015-08-05T18:33:42.690Z", "created_date": "2015-08-05T18:33:02.041Z", "campus_tacoma": false}, "model": "mdot_rest.uwresource", "pk": 2}, {"fields": {"audience": "students", "resource": [1, 2]}, "model": "mdot_rest.intendedaudience", "pk": 1}, {"fields": {"audience": "faculty", "resource": [1, 2]}, "model": "mdot_rest.intendedaudience", "pk": 2}, {"fields": {"audience": "staff", "resource": [1, 2]}, "model": "mdot_rest.intendedaudience", "pk": 3}, {"fields": {"audience": "alumni", "resource": [1]}, "model": "mdot_rest.intendedaudience", "pk": 4}, {"fields": {"audience": "general_public", "resource": [1, 2]}, "model": "mdot_rest.intendedaudience", "pk": 5}, {"fields": {"url": "http://www.washington.edu/home/peopledir", "resource": 1, "link_type": "WEB"}, "model": "mdot_rest.resourcelink", "pk": 1}, {"fields": {"url": "http://www.washington.edu/maps/", "resource": 2, "link_type": "WEB"}, "model": "mdot_rest.resourcelink", "pk": 2}]
+[
+{
+    "fields": {
+        "accessible": false,
+        "feature_desc": "UW Directory",
+        "title": "UW Directory",
+        "image": "",
+        "campus_seattle": true,
+        "campus_bothell": false,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-05T18:32:00.574Z",
+        "created_date": "2015-08-05T18:29:08.532Z",
+        "campus_tacoma": false
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 1
+},
+{
+    "fields": {
+        "accessible": false,
+        "feature_desc": "Maps",
+        "title": "Maps",
+        "image": "",
+        "campus_seattle": true,
+        "campus_bothell": false,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-05T18:33:42.690Z",
+        "created_date": "2015-08-05T18:33:02.041Z",
+        "campus_tacoma": false
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 2
+},
+{
+    "fields": {
+        "accessible": false,
+        "feature_desc": "Sports",
+        "title": "Sports",
+        "image": "",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": false,
+        "last_modified": "2015-08-05T23:13:22.438Z",
+        "created_date": "2015-08-05T23:13:22.438Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 3
+},
+{
+    "fields": {
+        "audience": "students",
+        "resource": [
+            1,
+            2,
+            3
+        ]
+    },
+    "model": "mdot_rest.intendedaudience",
+    "pk": 1
+},
+{
+    "fields": {
+        "audience": "faculty",
+        "resource": [
+            1,
+            2,
+            3
+        ]
+    },
+    "model": "mdot_rest.intendedaudience",
+    "pk": 2
+},
+{
+    "fields": {
+        "audience": "staff",
+        "resource": [
+            1,
+            2,
+            3
+        ]
+    },
+    "model": "mdot_rest.intendedaudience",
+    "pk": 3
+},
+{
+    "fields": {
+        "audience": "alumni",
+        "resource": [
+            1,
+            3
+        ]
+    },
+    "model": "mdot_rest.intendedaudience",
+    "pk": 4
+},
+{
+    "fields": {
+        "audience": "general_public",
+        "resource": [
+            1,
+            2,
+            3
+        ]
+    },
+    "model": "mdot_rest.intendedaudience",
+    "pk": 5
+},
+{
+    "fields": {
+        "url": "http://www.washington.edu/home/peopledir",
+        "resource": 1,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 1
+},
+{
+    "fields": {
+        "url": "http://www.washington.edu/maps/",
+        "resource": 2,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 2
+},
+{
+    "fields": {
+        "url": "http://gohuskies.com",
+        "resource": 3,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 3
+}
+]
