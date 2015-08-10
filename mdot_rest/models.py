@@ -1,12 +1,22 @@
 from django.db import models
+from django.utils.text import slugify
+
+
+def generate_image_name(instance, filename):
+    ext = filename.split('.')[-1]
+    return 'uploads/' + slugify(instance.title) + '.' + ext
 
 
 class UWResource(models.Model):
-    """ Represents metadata about a resource we want to direct users to.
+    """ Represents metadata about a resource we want
+    to direct users to.
     """
     title = models.CharField(max_length=60)
     feature_desc = models.CharField(max_length=120)
-    image = models.ImageField(upload_to='uploads', blank=True, null=True)
+    image = models.ImageField(
+        upload_to=generate_image_name,
+        blank=True,
+        null=True)
     featured = models.BooleanField(default=False)
     accessible = models.BooleanField(default=False)
     responsive_web = models.BooleanField(default=False)
@@ -18,6 +28,14 @@ class UWResource(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        try:
+            this = UWResource.objects.get(id=self.id)
+            this.image.delete(save=False)
+        except:
+            pass
+        super(UWResource, self).save(*args, **kwargs)
 
 
 class IntendedAudience(models.Model):
