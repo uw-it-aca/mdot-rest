@@ -24,11 +24,11 @@ class UWResourceFilter(filters.FilterSet):
 class UWResourceList(generics.ListCreateAPIView):
     queryset = UWResource.objects.all()
     serializer_class = UWResourceSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.DjangoModelPermissionsOrAnonReadOnly,)
     filter_class = UWResourceFilter
 
 
 class UWResourceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = UWResource.objects.all()
     serializer_class = UWResourceSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.DjangoModelPermissionsOrAnonReadOnly,)
