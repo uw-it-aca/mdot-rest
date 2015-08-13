@@ -1,0 +1,342 @@
+[
+{
+    "fields": {
+        "accessible": true,
+        "feature_desc": "Find places to study on campus",
+        "title": "SpaceScout",
+        "image": "uploads/spacescout.png",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-05T20:25:50.024Z",
+        "created_date": "2015-08-04T22:03:53.763Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 1
+},
+{
+    "fields": {
+        "accessible": true,
+        "feature_desc": "Students, instantly access your Canvas courses--for free. Just like Canvas on the web, but you don\u2019t have to lug around ",
+        "title": "Canvas",
+        "image": "uploads/canvas_WrgKROb.png",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-11T22:04:01.775Z",
+        "created_date": "2015-08-04T22:08:28.495Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 2
+},
+{
+    "fields": {
+        "accessible": false,
+        "feature_desc": "news at the uw",
+        "title": "News",
+        "image": "uploads/uwtoday_M7AsUeL.png",
+        "campus_seattle": false,
+        "campus_bothell": false,
+        "responsive_web": false,
+        "featured": true,
+        "last_modified": "2015-08-11T17:03:18.113Z",
+        "created_date": "2015-08-04T22:09:57.924Z",
+        "campus_tacoma": false
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 3
+},
+{
+    "fields": {
+        "accessible": false,
+        "feature_desc": "lsdkafj alskdf jlaksdjf lkasdjflkasdf",
+        "title": "MyUW",
+        "image": "uploads/myuw_Z8683YZ.png",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-11T17:30:10.667Z",
+        "created_date": "2015-08-04T22:10:54.443Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 4
+},
+{
+    "fields": {
+        "accessible": true,
+        "feature_desc": "get around the city with this cool transit app",
+        "title": "One Bus Away",
+        "image": "uploads/onebus.png",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-05T20:25:28.294Z",
+        "created_date": "2015-08-04T22:13:42.380Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 5
+},
+{
+    "fields": {
+        "accessible": false,
+        "feature_desc": "sports stuff for husky fans!",
+        "title": "Athletics",
+        "image": "uploads/gohuskies_WTbo85S.png",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-12T18:19:16.511Z",
+        "created_date": "2015-08-05T17:05:15.810Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 6
+},
+{
+    "fields": {
+        "accessible": true,
+        "feature_desc": "The uw library is a cool place to study and read books",
+        "title": "Libraries",
+        "image": "uploads/library_8LzDkWH.png",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-12T18:12:57.331Z",
+        "created_date": "2015-08-05T20:36:05.707Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 7
+},
+{
+    "fields": {
+        "accessible": true,
+        "feature_desc": "this is IT resources for you on campus",
+        "title": "IT Connect",
+        "image": "uploads/itconnect_Piq8sgm.png",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-12T18:28:45.997Z",
+        "created_date": "2015-08-05T20:38:43.847Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 8
+},
+{
+    "fields": {
+        "accessible": true,
+        "feature_desc": "this is the calendar",
+        "title": "Calendar",
+        "image": "uploads/calendar_ctzXw6R.png",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-12T18:34:00.474Z",
+        "created_date": "2015-08-05T20:41:19.006Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 9
+},
+{
+    "fields": {
+        "accessible": true,
+        "feature_desc": "the people directory",
+        "title": "Directory",
+        "image": "uploads/directory.png",
+        "campus_seattle": true,
+        "campus_bothell": true,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-05T20:49:51.977Z",
+        "created_date": "2015-08-05T20:49:12.127Z",
+        "campus_tacoma": true
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 10
+},
+{
+    "fields": {
+        "accessible": true,
+        "feature_desc": "Find your way around the uw seattle campus.",
+        "title": "Maps",
+        "image": "uploads/campusmap_GrMSUKi.png",
+        "campus_seattle": true,
+        "campus_bothell": false,
+        "responsive_web": true,
+        "featured": true,
+        "last_modified": "2015-08-11T18:50:31.599Z",
+        "created_date": "2015-08-05T20:51:08.277Z",
+        "campus_tacoma": false
+    },
+    "model": "mdot_rest.uwresource",
+    "pk": 11
+},
+{
+    "fields": {
+        "url": "https://spacescout.uw.edu",
+        "resource": 1,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 1
+},
+{
+    "fields": {
+        "url": "https://itunes.apple.com/us/app/spacescout/id551472160?mt=8",
+        "resource": 1,
+        "link_type": "IOS"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 2
+},
+{
+    "fields": {
+        "url": "https://canvas.uw.edu",
+        "resource": 2,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 3
+},
+{
+    "fields": {
+        "url": "https://itunes.apple.com/us/app/canvas-by-instructure/id480883488?mt=8",
+        "resource": 2,
+        "link_type": "IOS"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 4
+},
+{
+    "fields": {
+        "url": "https://play.google.com/store/apps/details?id=com.instructure.candroid&hl=en",
+        "resource": 2,
+        "link_type": "AND"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 5
+},
+{
+    "fields": {
+        "url": "http://www.washington.edu/news/",
+        "resource": 3,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 6
+},
+{
+    "fields": {
+        "url": "http://myuw.washington.edu",
+        "resource": 4,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 7
+},
+{
+    "fields": {
+        "url": "https://play.google.com/store/apps/details?id=com.joulespersecond.seattlebusbot&hl=en",
+        "resource": 5,
+        "link_type": "AND"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 8
+},
+{
+    "fields": {
+        "url": "https://itunes.apple.com/us/app/onebusaway/id329380089?mt=8",
+        "resource": 5,
+        "link_type": "IOS"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 9
+},
+{
+    "fields": {
+        "url": "http://pugetsound.onebusaway.org/where/standard/",
+        "resource": 5,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 10
+},
+{
+    "fields": {
+        "url": "http://www.gohuskies.com/",
+        "resource": 6,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 11
+},
+{
+    "fields": {
+        "url": "https://www.microsoft.com/en-us/store/apps/onebusaway/9wzdncrdm5pc",
+        "resource": 5,
+        "link_type": "WIP"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 12
+},
+{
+    "fields": {
+        "url": "https://www.lib.washington.edu/",
+        "resource": 7,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 13
+},
+{
+    "fields": {
+        "url": "http://www.washington.edu/itconnect/",
+        "resource": 8,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 14
+},
+{
+    "fields": {
+        "url": "http://www.washington.edu/calendar/",
+        "resource": 9,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 15
+},
+{
+    "fields": {
+        "url": "http://www.washington.edu/home/peopledir/",
+        "resource": 10,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 16
+},
+{
+    "fields": {
+        "url": "http://www.washington.edu/maps/",
+        "resource": 11,
+        "link_type": "WEB"
+    },
+    "model": "mdot_rest.resourcelink",
+    "pk": 17
+}
+]
