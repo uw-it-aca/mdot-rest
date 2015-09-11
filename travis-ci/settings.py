@@ -118,8 +118,8 @@ STATICFILES_FINDERS = (
     # 'compressor.finders.CompressorFinder',
 )
 
-MEDIA_ROOT = '/vagrant/'
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = '/vagrant/'
+# MEDIA_URL = '/media/'
 
 # COMPRESS_ROOT = "/tmp/some/path/for/files"
 # COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
