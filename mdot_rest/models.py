@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 
 
 class UWResource(models.Model):
@@ -18,6 +19,13 @@ class UWResource(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            img = Image.open(self.image)
+            if not img.format == 'PNG':
+                img.save(self.image.path, 'PNG')
+        super(UWResource, self).save(*args, **kwargs)
 
 
 class IntendedAudience(models.Model):
