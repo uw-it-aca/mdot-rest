@@ -24,7 +24,7 @@ class UWResource(models.Model):
         if self.image:
             img = Image.open(self.image)
             if not img.format == 'PNG':
-                img.save(self.image.path, 'PNG')
+                img.save(self.image.path, 'PNG', optimize=True)
         super(UWResource, self).save(*args, **kwargs)
 
 
