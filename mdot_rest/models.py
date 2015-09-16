@@ -1,4 +1,5 @@
 from django.db import models
+from mdot_rest.optimizedpngfield import OptimizedPNGImageField
 
 
 class UWResource(models.Model):
@@ -6,7 +7,7 @@ class UWResource(models.Model):
     """
     title = models.CharField(max_length=60)
     feature_desc = models.CharField(max_length=120)
-    image = models.ImageField(upload_to='uploads', blank=True, null=True)
+    image = OptimizedPNGImageField(upload_to='uploads', blank=True, null=True)
     featured = models.BooleanField(default=False)
     accessible = models.BooleanField(default=False)
     responsive_web = models.BooleanField(default=False)
