@@ -1,5 +1,6 @@
 from django.test import TestCase
-from django.core.files import File
+from django.conf import settings
+from django.core.files.uploadedfile import SimpleUploadedFile
 from mdot_rest.models import *
 from PIL import Image
 import os
@@ -24,7 +25,8 @@ class ImageTest(TestCase):
         """
         # save a JPEG as the image
         fhandle = open("{0}/files/campusmap.jpg".format(TESTROOT))
-        self.uwr1.image = File(fhandle)
+        dest = "{0}uploads/test.jpg".format(settings.MEDIA_ROOT)
+        self.uwr1.image = SimpleUploadedFile(dest, fhandle.read())
         self.uwr1.save()
         fhandle.close()
 
