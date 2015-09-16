@@ -9,6 +9,7 @@ import os
 class OptimizedPNGImageFieldFile(ImageFieldFile):
     """ Saves an optimized PNG.
     """
+
     def save(self, name, content, save=True):
         if content:
             # convert to optimized PNG
@@ -22,7 +23,8 @@ class OptimizedPNGImageFieldFile(ImageFieldFile):
             (basename, ext) = os.path.splitext(name)
             name = "{0}{1}".format(basename, '.png')
 
-        return super(OptimizedPNGImageFieldFile, self).save(name, content, save)
+        return super(OptimizedPNGImageFieldFile, self).save(
+            name, content, save)
 
 
 class OptimizedPNGImageField(ImageField):
