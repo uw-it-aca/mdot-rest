@@ -33,6 +33,9 @@ class ImageTest(TestCase):
         # assert that image type is now PNG
         img = Image.open(self.uwr1.image)
         self.assertEqual('PNG', img.format)
+        # and it has a .png extension
+        (basename, ext) = os.path.splitext(self.uwr1.image.name)
+        self.assertEqual('.png', ext)
 
     def tearDown(self):
         # destroy the UWResource
