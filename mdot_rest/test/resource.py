@@ -96,6 +96,7 @@ class ResourceTest(TestCase):
                              }
 
         self.assertTrue(json.loads(response.content) == expected_response)
+        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
 
     def test_get_accessible_resource(self):
         """
@@ -124,6 +125,7 @@ class ResourceTest(TestCase):
 
         self.assertTrue(json.loads(response.content).sort() ==
                         expected_response.sort())
+        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
 
     def test_get_responsive_resources(self):
         """
@@ -173,6 +175,7 @@ class ResourceTest(TestCase):
 
         self.assertTrue(json.loads(response.content).sort() ==
                         expected_response.sort())
+        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
 
     def test_get_seattle_resource(self):
         """
@@ -222,6 +225,7 @@ class ResourceTest(TestCase):
 
         self.assertTrue(json.loads(response.content).sort() ==
                         expected_response.sort())
+        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
 
     def test_get_featured_resource(self):
         """
@@ -273,6 +277,7 @@ class ResourceTest(TestCase):
 
         self.assertTrue(json.loads(response.content).sort() ==
                         expected_response.sort())
+        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
 
     def test_get_resource_by_title(self):
         """
@@ -304,6 +309,7 @@ class ResourceTest(TestCase):
 
         self.assertTrue(json.loads(response.content).sort() ==
                         expected_response.sort())
+        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
 
     def test_get_resource_by_audience(self):
         """
@@ -353,6 +359,7 @@ class ResourceTest(TestCase):
 
         self.assertTrue(json.loads(response.content).sort() ==
                         expected_response.sort())
+        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
 
     def test_complex_filter(self):
         """
@@ -382,6 +389,7 @@ class ResourceTest(TestCase):
 
         self.assertTrue(json.loads(response.content).sort() ==
                         expected_response.sort())
+        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
 
     def test_put_to_api(self):
         """
