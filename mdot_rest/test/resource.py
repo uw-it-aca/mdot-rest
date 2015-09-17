@@ -283,7 +283,7 @@ class ResourceTest(TestCase):
         """
         Get a resource by its title.
         """
-        response = self.client.get('/api/v1/uwresources/?title=ITConnect')
+        response = self.client.get('/api/v1/uwresources/?title=SpaceScout')
         expected_response = [{u'accessible': False,
                               u'feature_desc': u'This is another test.',
                               u'title': u'SpaceScout',
