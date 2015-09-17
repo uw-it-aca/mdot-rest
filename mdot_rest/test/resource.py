@@ -21,7 +21,8 @@ class ResourceTest(TestCase):
                 responsive_web=True,
                 campus_seattle=True,
                 campus_tacoma=False,
-                campus_bothell=False)
+                campus_bothell=False,
+                published=True)
             self.resource2 = resource_models.UWResource.objects.create(
                 title='SpaceScout',
                 feature_desc='This is another test.',
@@ -30,7 +31,8 @@ class ResourceTest(TestCase):
                 responsive_web=True,
                 campus_seattle=True,
                 campus_tacoma=True,
-                campus_bothell=True)
+                campus_bothell=True,
+                published=True)
 
             self.intended_audience1 = \
                 resource_models.IntendedAudience.objects.create(
