@@ -8,6 +8,7 @@ from mock import patch
 
 
 class ResourceTest(TestCase):
+
     def setUp(self):
         self.default_date = datetime.datetime(1945, 11, 03, 12, 03, 34)
         with patch('django.utils.timezone.now') as mock_now:
@@ -33,6 +34,16 @@ class ResourceTest(TestCase):
                 campus_tacoma=True,
                 campus_bothell=True,
                 published=True)
+            self.resource3 = resource_models.UWResource.objects.create(
+                title='Unpublished',
+                feature_desc='This is a resource that is not published.',
+                featured=True,
+                accessible=False,
+                responsive_web=True,
+                campus_seattle=True,
+                campus_tacoma=True,
+                campus_bothell=True,
+                published=False)
 
             self.intended_audience1 = \
                 resource_models.IntendedAudience.objects.create(
@@ -47,6 +58,7 @@ class ResourceTest(TestCase):
             self.intended_audience1.resource.add(self.resource1)
             self.intended_audience1.resource.add(self.resource2)
             self.intended_audience2.resource.add(self.resource2)
+            self.intended_audience2.resource.add(self.resource3)
 
             self.resource_link1 = resource_models.ResourceLink.objects.create(
                 link_type='IOS',
@@ -60,9 +72,14 @@ class ResourceTest(TestCase):
                 link_type='IOS',
                 resource=self.resource2,
                 url='spacescout.ue.edu/ios')
+            self.resource_link4 = resource_models.ResourceLink.objects.create(
+                link_type='WEB',
+                resource=self.resource3,
+                url='washington.edu/notathing')
 
             self.resource1.save()
             self.resource2.save()
+            self.resource3.save()
 
             self.intended_audience1.save()
             self.intended_audience2.save()
@@ -70,6 +87,7 @@ class ResourceTest(TestCase):
             self.resource_link1.save()
             self.resource_link2.save()
             self.resource_link3.save()
+            self.resource_link4.save()
 
         self.client = Client()
 
@@ -98,7 +116,59 @@ class ResourceTest(TestCase):
                              }
 
         self.assertTrue(json.loads(response.content) == expected_response)
-        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
+        self.assertTrue(json.loads(response.content).__len__(),
+                        expected_response.__len__())
+
+    def test_get_published_resources(self):
+        """
+        Request all resources, but check that we only get published ones.
+        """
+        response = self.client.get('/api/v1/uwresources/')
+        expected_response = [{u'accessible': True,
+                              u'feature_desc': u'This is a test.',
+                              u'title': u'ITConnect',
+                              u'image': None,
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': False,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'}],
+                              u'resource_links': [{u'url': u'uw.edu/itconnect',
+                                                   u'link_type': u'IOS'}],
+                              u'id': 1,
+                              u'campus_tacoma': False
+                              },
+                             {u'accessible': False,
+                              u'feature_desc': u'This is another test.',
+                              u'title': u'SpaceScout',
+                              u'image': None,
+                              u'created_date': u'1945-11-03T12:03:34Z',
+                              u'campus_seattle': True,
+                              u'campus_bothell': True,
+                              u'responsive_web': True,
+                              u'featured': True,
+                              u'last_modified': u'1945-11-03T12:03:34Z',
+                              u'intended_audiences': [{u'audience':
+                                                       u'Students'},
+                                                      {u'audience':
+                                                       u'Developers'}],
+                              u'resource_links': [{u'url':
+                                                   u'spacescout.uw.edu',
+                                                   u'link_type': u'WEB'},
+                                                  {u'url':
+                                                   u'spacescout.ue.edu/ios',
+                                                   u'link_type': u'IOS'}],
+                              u'id': 2,
+                              u'campus_tacoma': True
+                              }]
+
+        self.assertTrue(sorted(json.loads(response.content)) ==
+                        sorted(expected_response))
+        self.assertTrue(json.loads(response.content).__len__(),
+                        expected_response.__len__())
 
     def test_get_accessible_resource(self):
         """
@@ -127,7 +197,8 @@ class ResourceTest(TestCase):
 
         self.assertTrue(sorted(json.loads(response.content)) ==
                         sorted(expected_response))
-        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
+        self.assertTrue(json.loads(response.content).__len__(),
+                        expected_response.__len__())
 
     def test_get_responsive_resources(self):
         """
@@ -177,7 +248,8 @@ class ResourceTest(TestCase):
 
         self.assertTrue(sorted(json.loads(response.content)) ==
                         sorted(expected_response))
-        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
+        self.assertTrue(json.loads(response.content).__len__(),
+                        expected_response.__len__())
 
     def test_get_seattle_resource(self):
         """
@@ -227,7 +299,8 @@ class ResourceTest(TestCase):
 
         self.assertTrue(sorted(json.loads(response.content)) ==
                         sorted(expected_response))
-        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
+        self.assertTrue(json.loads(response.content).__len__(),
+                        expected_response.__len__())
 
     def test_get_featured_resource(self):
         """
@@ -279,7 +352,8 @@ class ResourceTest(TestCase):
 
         self.assertTrue(sorted(json.loads(response.content)) ==
                         sorted(expected_response))
-        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
+        self.assertTrue(json.loads(response.content).__len__(),
+                        expected_response.__len__())
 
     def test_get_resource_by_title(self):
         """
@@ -311,7 +385,8 @@ class ResourceTest(TestCase):
 
         self.assertTrue(sorted(json.loads(response.content)) ==
                         sorted(expected_response))
-        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
+        self.assertTrue(json.loads(response.content).__len__(),
+                        expected_response.__len__())
 
     def test_get_resource_by_audience(self):
         """
@@ -361,7 +436,8 @@ class ResourceTest(TestCase):
 
         self.assertTrue(sorted(json.loads(response.content)) ==
                         sorted(expected_response))
-        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
+        self.assertTrue(json.loads(response.content).__len__(),
+                        expected_response.__len__())
 
     def test_complex_filter(self):
         """
@@ -391,7 +467,8 @@ class ResourceTest(TestCase):
 
         self.assertTrue(sorted(json.loads(response.content)) ==
                         sorted(expected_response))
-        self.assertTrue(json.loads(response.content).__len__(), expected_response.__len__())
+        self.assertTrue(json.loads(response.content).__len__(),
+                        expected_response.__len__())
 
     def test_put_to_api(self):
         """
