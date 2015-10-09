@@ -14,6 +14,11 @@ class OptimizedPNGImageFieldFile(ImageFieldFile):
         if content:
             # convert to optimized PNG
             img = Image.open(content)
+            w, h = img.size
+            resizeFactor = 1
+            if (min(w, h) > 350):
+                resizeFactor = min(w/350, h/350)
+            img = img.resize((w/resizeFactor, h/resizeFactor), Image.ANTIALIAS)
             buf = cStringIO.StringIO()
             img.save(buf, format='PNG', optimized=True)
             new_content_str = buf.getvalue()
