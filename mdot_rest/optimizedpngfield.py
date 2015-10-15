@@ -16,15 +16,12 @@ class OptimizedPNGImageFieldFile(ImageFieldFile):
             # the PNG size is 350 * 350px
             img = Image.open(content)
             w, h = img.size
-            base = 350
-            percent = base / min(float(img.size[0]), float(img.size[1]))
-            w = int(w * float(percent))
-            h = int(h * float(percent))
-            img = img.resize((w, h), Image.ANTIALIAS)
             if w >= h:
-                img = img.crop((w/2 - 175, 0, w/2 + 175, h))
+                img = img.crop((w/2 - h/2, 0, w/2 + h/2, h))
             else:
-                img = img.crop((0, h/2 - 175, w, h/2 + 175))
+                img = img.crop((0, h/2 - w/2, w, h/2 + w/2))
+            if img.size[0] > 350:
+                img = img.resize((350, 350), Image.ANTIALIAS)
 
             buf = cStringIO.StringIO()
             img.save(buf, format='PNG', optimized=True)
