@@ -8,7 +8,7 @@ import random
 
 ALPHA = "abcdefghijklmnopqrstuvwxyz "
 TESTROOT = os.path.abspath(os.path.dirname(__file__))
-
+#import pdb; pdb.set_trace()
 
 class ImageTest(TestCase):
     """ Tests image functions.
@@ -36,6 +36,44 @@ class ImageTest(TestCase):
         # and it has a .png extension
         (basename, ext) = os.path.splitext(self.uwr1.image.name)
         self.assertEqual('.png', ext)
+
+    def test_resize_img(self):
+        """ Tests that a image is properly resized to 350 by 350px
+        """
+        # save a large landscape/portrait/square JPEG as the image
+        fhandle = open("{0}/files/large.png".format(TESTROOT))
+        dest = "{0}uploads/test.jpg".format(settings.MEDIA_ROOT)
+        self.uwr1.image = SimpleUploadedFile(dest, fhandle.read())
+        self.uwr1.save()
+        fhandle.close()
+        # assert that landscape image size is now 350 by 350px
+        img = Image.open(self.uwr1.image)
+        self.assertEqual(img.size, (350, 350))
+
+        # save a medium landscape/portrait JPEG as the image
+        fhandle = open("{0}/files/medium.png".format(TESTROOT))
+        dest = "{0}uploads/test.jpg".format(settings.MEDIA_ROOT)
+        origImg = Image.open("{0}/files/medium.png".format(TESTROOT))
+        self.uwr1.image = SimpleUploadedFile(dest, fhandle.read())
+        self.uwr1.save()
+        fhandle.close()
+        # assert that both sizes of image are equal to the smaller size
+        # of the original img
+        img = Image.open(self.uwr1.image)
+        self.assertEqual(img.size, (min(origImg.size[0], origImg.size[1]), min(origImg.size[0], origImg.size[1])))
+
+        # save a small landscape/portrait/square JPEG as the image
+        fhandle = open("{0}/files/small.png".format(TESTROOT))
+        dest = "{0}uploads/test.jpg".format(settings.MEDIA_ROOT)
+        origImg = Image.open("{0}/files/small.png".format(TESTROOT))
+        self.uwr1.image = SimpleUploadedFile(dest, fhandle.read())
+        self.uwr1.save()
+        fhandle.close()
+        # assert that both sizes of image are equal to the smaller size
+        # of the original img
+        img = Image.open(self.uwr1.image)
+        self.assertEqual(img.size, (min(origImg.size[0], origImg.size[1]), min(origImg.size[0], origImg.size[1])))
+        pass
 
     def tearDown(self):
         # destroy the UWResource
