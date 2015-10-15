@@ -8,7 +8,6 @@ import random
 
 ALPHA = "abcdefghijklmnopqrstuvwxyz "
 TESTROOT = os.path.abspath(os.path.dirname(__file__))
-#import pdb; pdb.set_trace()
 
 class ImageTest(TestCase):
     """ Tests image functions.
