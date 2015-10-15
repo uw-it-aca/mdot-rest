@@ -40,7 +40,7 @@ class ImageTest(TestCase):
     def test_resize_img(self):
         """ Tests that a image is properly resized to 350 by 350px
         """
-        # save a large landscape/portrait/square JPEG as the image
+        # save a large landscape/portrait/square PNG as the image
         fhandle = open("{0}/files/large.png".format(TESTROOT))
         dest = "{0}uploads/test.jpg".format(settings.MEDIA_ROOT)
         self.uwr1.image = SimpleUploadedFile(dest, fhandle.read())
@@ -50,7 +50,7 @@ class ImageTest(TestCase):
         img = Image.open(self.uwr1.image)
         self.assertEqual(img.size, (350, 350))
 
-        # save a medium landscape/portrait JPEG as the image
+        # save a medium landscape/portrait PNG as the image
         fhandle = open("{0}/files/medium.png".format(TESTROOT))
         dest = "{0}uploads/test.jpg".format(settings.MEDIA_ROOT)
         origImg = Image.open("{0}/files/medium.png".format(TESTROOT))
@@ -62,7 +62,7 @@ class ImageTest(TestCase):
         img = Image.open(self.uwr1.image)
         self.assertEqual(img.size, (min(origImg.size[0], origImg.size[1]), min(origImg.size[0], origImg.size[1])))
 
-        # save a small landscape/portrait/square JPEG as the image
+        # save a small landscape/portrait/square PNG as the image
         fhandle = open("{0}/files/small.png".format(TESTROOT))
         dest = "{0}uploads/test.jpg".format(settings.MEDIA_ROOT)
         origImg = Image.open("{0}/files/small.png".format(TESTROOT))
