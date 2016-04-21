@@ -75,7 +75,8 @@ class ResourceTest(TestCase):
         """
         Get the first resource in the database.
         """
-        response = self.client.get('/api/v1/uwresources/1/', format='json')
+        path = "/api/v1/uwresources/{0}/".format(self.resource1.pk)
+        response = self.client.get(path, format='json')
         expected_response = {u'accessible': True,
                              u'campus_bothell': False,
                              u'campus_seattle': True,
@@ -83,7 +84,7 @@ class ResourceTest(TestCase):
                              u'created_date': u'1945-11-03T12:03:34Z',
                              u'feature_desc': u'This is a test.',
                              u'featured': True,
-                             u'id': 1,
+                             u'id': self.resource1.pk,
                              u'image': None,
                              u'intended_audiences': [{u'audience':
                                                       u'Students'}],
