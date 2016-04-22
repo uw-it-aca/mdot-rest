@@ -8,7 +8,7 @@ import mdot_rest.optimizedpngfield
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mdot_rest', '0008_auto_20150730_2217'),
+        ('mdot_rest', '0009_auto_20160421_1947.py'),
     ]
 
     operations = [
@@ -16,10 +16,5 @@ class Migration(migrations.Migration):
             model_name='uwresource',
             name='published',
             field=models.BooleanField(default=False),
-        ),
-        migrations.AlterField(
-            model_name='uwresource',
-            name='image',
-            field=mdot_rest.optimizedpngfield.OptimizedPNGImageField(null=True, upload_to=b'uploads', blank=True),
         ),
     ]
