@@ -8,7 +8,7 @@ import mdot_rest.optimizedpngfield
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mdot_rest', '0009_auto_20160421_1947.py'),
+        ('mdot_rest', '0009_auto_20160421_1947'),
     ]
 
     operations = [
