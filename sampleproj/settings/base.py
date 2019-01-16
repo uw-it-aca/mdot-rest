@@ -20,27 +20,27 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'replaceme-xxxxxxxxxxxxxxxx'
+#SECRET_KEY = 'replaceme-xxxxxxxxxxxxxxxx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
+#    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+#    'django.contrib.sessions',
+#    'django.contrib.messages',
+#    'django.contrib.staticfiles',
     # 'compressor',
     # 'templatetag_handlebars',
     # 'easy_pjax',
-    'rest_framework',
+#    'rest_framework',
     # 'mdotdevs',
     'mdot_rest',
     # 'mdot',
@@ -48,38 +48,38 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+#    'django.middleware.common.CommonMiddleware',
+#    'django.middleware.csrf.CsrfViewMiddleware',
+#    'django.contrib.auth.middleware.AuthenticationMiddleware',
+#    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+#    'django.contrib.messages.middleware.MessageMiddleware',
+#    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#    'django.middleware.security.SecurityMiddleware',
     # 'django_mobileesp.middleware.UserAgentDetectionMiddleware',
 )
 
 ROOT_URLCONF = 'travis-ci.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'mdot.context_processors.less_compiled',
-                'mdot.context_processors.google_analytics',
-                'mdot.context_processors.devtools_bar',
-            ],
-        },
-    },
-]
+#TEMPLATES = [
+#    {
+#        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#        'DIRS': [],
+#        'APP_DIRS': True,
+#        'OPTIONS': {
+#            'context_processors': [
+#                'django.template.context_processors.debug',
+#                'django.template.context_processors.request',
+#                'django.contrib.auth.context_processors.auth',
+#                'django.contrib.messages.context_processors.messages',
+#                'mdot.context_processors.less_compiled',
+#                'mdot.context_processors.google_analytics',
+#                'mdot.context_processors.devtools_bar',
+#            ],
+#        },
+#    },
+#]
 
-WSGI_APPLICATION = 'travis-ci.wsgi.application'
+#WSGI_APPLICATION = 'travis-ci.wsgi.application'
 
 
 # Database
@@ -96,13 +96,13 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+#USE_I18N = True
 
-USE_L10N = True
+#USE_L10N = True
 
 USE_TZ = True
 
@@ -110,13 +110,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 
-STATICFILES_FINDERS = (
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+#STATICFILES_FINDERS = (
+#    "django.contrib.staticfiles.finders.FileSystemFinder",
+#    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     # 'compressor.finders.CompressorFinder',
-)
+#)
 
 # MEDIA_ROOT = '/vagrant/'
 # MEDIA_URL = '/media/'
@@ -133,10 +133,10 @@ STATICFILES_FINDERS = (
 #    '#compressor.filters.jsmin.JSMinFilter',
 # ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # devtools
-ACA_DEVTOOLS_ENABLED = True
+#ACA_DEVTOOLS_ENABLED = True
 
 # mobileesp
 # from django_mobileesp.detector import mobileesp_agent as agent
@@ -154,4 +154,4 @@ REST_FRAMEWORK = {
 }
 
 # RESTCLIENTS_MDOT_DAO_CLASS = 'mdot.mdot_rest_client.client.MDOTLive'
-RESTCLIENTS_MDOT_HOST = 'http://localhost:8000/'
+#RESTCLIENTS_MDOT_HOST = 'http://localhost:8000/'
