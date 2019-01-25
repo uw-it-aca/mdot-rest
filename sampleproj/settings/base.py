@@ -58,7 +58,7 @@ MIDDLEWARE_CLASSES = (
     # 'django_mobileesp.middleware.UserAgentDetectionMiddleware',
 )
 
-ROOT_URLCONF = 'travis-ci.urls'
+ROOT_URLCONF = 'sampleproj.urls'
 
 #TEMPLATES = [
 #    {
