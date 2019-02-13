@@ -53,7 +53,7 @@ docs/_build/
 # PyBuilder
 target/
 
-# mdot
+# mdot-rest
 sampleproj/db.sqlite3
 manage.py
 sampleproj/settings/local.py
