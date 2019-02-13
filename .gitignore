@@ -52,3 +52,9 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# mdot
+sampleproj/db.sqlite3
+manage.py
+sampleproj/settings/local.py
+uploads
