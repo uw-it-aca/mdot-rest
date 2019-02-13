@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     # 'templatetag_handlebars',
     # 'easy_pjax',
 #    'rest_framework',
+#    'django_filter',
     # 'mdotdevs',
     'mdot_rest',
     # 'mdot',
