@@ -14,7 +14,7 @@ setup(
     install_requires=[
         'setuptools',
         'django<1.11,>1.9',
-        'djangorestframework<3.8.0',
+        'djangorestframework<3.9.0',
         'django-filter<2.0',
         'Pillow',
         'mock==1.0.1',
