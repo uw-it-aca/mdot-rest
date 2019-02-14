@@ -17,7 +17,7 @@ setup(
         'djangorestframework<3.9.0',
         'django-filter<2.0',
         'Pillow',
-        'mock==1.0.1',
+        'mock',
     ],
     license='Apache License, Version 2.0',
     description='A RESTful API server for references to mobile resources.',
