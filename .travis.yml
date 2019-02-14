@@ -8,10 +8,10 @@ install:
   - pip install coverage
   - pip install coveralls
 before_script:
-  - cp travis-ci/manage.py manage.py
-  - python manage.py migrate --noinput
+  - cp sampleproj/manage.py manage.py
+  - python manage.py migrate --noinput --settings=sampleproj.settings.travis
 script:
   - pycodestyle mdot_rest/ --exclude=migrations
-  - coverage run --source=mdot_rest/ --omit=mdot_rest/migrations/* manage.py test mdot_rest
+  - coverage run --source=mdot_rest/ --omit=mdot_rest/migrations/* manage.py test mdot_rest --settings=sampleproj.settings.travis
 after_script:
   - coveralls
