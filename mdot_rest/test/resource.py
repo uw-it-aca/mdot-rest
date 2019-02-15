@@ -91,6 +91,24 @@ class ResourceTest(TestCase):
 
         self.client = Client()
 
+    def test_resource_unicode(self):
+        """
+        Test that the __unicode__ method returns the resource name.
+        """
+        self.assertEqual(self.resource1.__unicode__(), 'ITConnect')
+
+    def test_intendedaudience_unicode(self):
+        """
+        Test that the __unicode__ method returns the audience name.
+        """
+        self.assertEqual(self.intended_audience1.__unicode__(), 'Students')
+
+    def test_resource_linke_unicode(self):
+        """
+        Test that the __unicode__ method returns the resource link name.
+        """
+        self.assertEqual(self.resource_link1.__unicode__(), 'ITConnect: IOS')
+
     def test_simple_resource(self):
         """
         Get the first resource in the database.
