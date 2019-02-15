@@ -12,6 +12,6 @@ before_script:
   - python manage.py migrate --noinput --settings=sampleproj.settings.travis
 script:
   - pycodestyle mdot_rest/ --exclude=migrations
-  - coverage run --source=mdot_rest/ --omit=mdot_rest/migrations/* manage.py test mdot_rest --settings=sampleproj.settings.travis
+  - coverage run --source=mdot_rest/ --omit=mdot_rest/admin.py,mdot_rest/migrations/* manage.py test mdot_rest --settings=sampleproj.settings.travis
 after_script:
   - coveralls
