@@ -14,6 +14,7 @@ class UWResource(models.Model):
     campus_seattle = models.BooleanField(default=False)
     campus_tacoma = models.BooleanField(default=False)
     campus_bothell = models.BooleanField(default=False)
+    published = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
