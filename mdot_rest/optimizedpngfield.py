@@ -14,7 +14,7 @@ class OptimizedPNGImageFieldFile(ImageFieldFile):
         if content:
             # convert to optimized PNG
             img = Image.open(content)
-            buf = cStringIO.StringIO()
+            buf = StringIO()
             img.save(buf, format='PNG', optimized=True)
             new_content_str = buf.getvalue()
             content = ContentFile(new_content_str)
