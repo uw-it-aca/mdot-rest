@@ -2,7 +2,7 @@ from django.core.files.base import ContentFile
 from django.db.models import ImageField
 from django.db.models.fields.files import ImageFieldFile
 from PIL import Image
-import cStringIO
+from io import StringIO
 import os
 
 
