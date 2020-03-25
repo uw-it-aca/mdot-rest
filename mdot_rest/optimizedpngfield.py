@@ -2,7 +2,7 @@ from django.core.files.base import ContentFile
 from django.db.models import ImageField
 from django.db.models.fields.files import ImageFieldFile
 from PIL import Image
-from io import StringIO
+from io import BytesIO
 import os
 
 
@@ -14,7 +14,7 @@ class OptimizedPNGImageFieldFile(ImageFieldFile):
         if content:
             # convert to optimized PNG
             img = Image.open(content)
-            buf = StringIO()
+            buf = BytesIO()
             img.save(buf, format='PNG', optimized=True)
             new_content_str = buf.getvalue()
             content = ContentFile(new_content_str)
