@@ -185,8 +185,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
-                        sorted(expected_response, key = lambda i : i['id']))
+        self.assertTrue(sorted(json.loads(response.content),
+                        key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -215,8 +216,9 @@ class ResourceTest(TestCase):
                               u'title': u'ITConnect'
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
-                        sorted(expected_response, key = lambda i : i['id']))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -266,8 +268,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
-                        sorted(expected_response, key = lambda i : i['id']))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -317,8 +320,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
-                        sorted(expected_response, key = lambda i : i['id']))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -370,8 +374,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
-                        sorted(expected_response, key = lambda i : i['id']))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -403,8 +408,9 @@ class ResourceTest(TestCase):
                               u'id': 2,
                               u'campus_tacoma': True}]
 
-        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
-                        sorted(expected_response, key = lambda i : i['id']))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -454,8 +460,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
-                        sorted(expected_response, key = lambda i : i['id']))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
