@@ -10,7 +10,7 @@ from mock import patch
 class ResourceTest(TestCase):
 
     def setUp(self):
-        self.default_date = datetime.datetime(1945, 11, 03, 12, 03, 34)
+        self.default_date = datetime.datetime(1945, 11, 3, 12, 3, 34)
         with patch('django.utils.timezone.now') as mock_now:
             mock_now.return_value = self.default_date
 
@@ -185,8 +185,8 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
+                        sorted(expected_response, key = lambda i : i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -215,8 +215,8 @@ class ResourceTest(TestCase):
                               u'title': u'ITConnect'
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
+                        sorted(expected_response, key = lambda i : i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -266,8 +266,8 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
+                        sorted(expected_response, key = lambda i : i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -317,8 +317,8 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
+                        sorted(expected_response, key = lambda i : i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -370,8 +370,8 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
+                        sorted(expected_response, key = lambda i : i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -403,8 +403,8 @@ class ResourceTest(TestCase):
                               u'id': 2,
                               u'campus_tacoma': True}]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
+                        sorted(expected_response, key = lambda i : i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -454,8 +454,8 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content), key = lambda i : i['id']) ==
+                        sorted(expected_response, key = lambda i : i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
