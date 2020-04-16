@@ -24,11 +24,11 @@ class ImageTest(TestCase):
         """ Tests that a non-PNG image is converted to PNG upon save.
         """
         # save a JPEG as the image
-        fhandle = open("{0}/files/campusmap.jpg".format(TESTROOT))
         dest = "{0}uploads/test.jpg".format(settings.MEDIA_ROOT)
-        self.uwr1.image = SimpleUploadedFile(dest, fhandle.read())
-        self.uwr1.save()
-        fhandle.close()
+
+        with open("{0}/files/campusmap.jpg".format(TESTROOT), 'rb') as fhandle:
+            self.uwr1.image = SimpleUploadedFile(dest, fhandle.read())
+            self.uwr1.save()
 
         # assert that image type is now PNG
         img = Image.open(self.uwr1.image)

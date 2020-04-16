@@ -10,7 +10,7 @@ from mock import patch
 class ResourceTest(TestCase):
 
     def setUp(self):
-        self.default_date = datetime.datetime(1945, 11, 03, 12, 03, 34)
+        self.default_date = datetime.datetime(1945, 11, 3, 12, 3, 34)
         with patch('django.utils.timezone.now') as mock_now:
             mock_now.return_value = self.default_date
 
@@ -91,23 +91,24 @@ class ResourceTest(TestCase):
 
         self.client = Client()
 
-    def test_resource_unicode(self):
+    def test_resource_str(self):
         """
-        Test that the __unicode__ method returns the resource name.
+        Test that the __str__ method returns the resource name.
+        Python 2 should still use unicode. Python 3 only uses str
         """
-        self.assertEqual(self.resource1.__unicode__(), 'ITConnect')
+        self.assertEqual(self.resource1.__str__(), 'ITConnect')
 
-    def test_intendedaudience_unicode(self):
+    def test_intendedaudience_str(self):
         """
-        Test that the __unicode__ method returns the audience name.
+        Test that the __str__ method returns the audience name.
         """
-        self.assertEqual(self.intended_audience1.__unicode__(), 'Students')
+        self.assertEqual(self.intended_audience1.__str__(), 'Students')
 
-    def test_resource_linke_unicode(self):
+    def test_resource_linke_str(self):
         """
-        Test that the __unicode__ method returns the resource link name.
+        Test that the __str__ method returns the resource link name.
         """
-        self.assertEqual(self.resource_link1.__unicode__(), 'ITConnect: IOS')
+        self.assertEqual(self.resource_link1.__str__(), 'ITConnect: IOS')
 
     def test_simple_resource(self):
         """
@@ -184,8 +185,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content),
+                        key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -214,8 +216,9 @@ class ResourceTest(TestCase):
                               u'title': u'ITConnect'
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -265,8 +268,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -316,8 +320,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -369,8 +374,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -402,8 +408,9 @@ class ResourceTest(TestCase):
                               u'id': 2,
                               u'campus_tacoma': True}]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
@@ -453,8 +460,9 @@ class ResourceTest(TestCase):
                               u'campus_tacoma': True
                               }]
 
-        self.assertTrue(sorted(json.loads(response.content)) ==
-                        sorted(expected_response))
+        self.assertTrue(sorted(json.loads(response.content),
+                               key=lambda i: i['id']) ==
+                        sorted(expected_response, key=lambda i: i['id']))
         self.assertTrue(json.loads(response.content).__len__(),
                         expected_response.__len__())
 
