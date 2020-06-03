@@ -24,7 +24,7 @@ INSTALLED_APPS = (
     'mdot_rest',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
 )
 
