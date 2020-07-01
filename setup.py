@@ -15,7 +15,7 @@ setup(
         'setuptools',
         'django>2.0,<2.2',
         'djangorestframework',
-        'django-filter',
+        'django-filter<2.3',
         'Pillow',
         'mock',
     ],
