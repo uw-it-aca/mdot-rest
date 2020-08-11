@@ -3,12 +3,12 @@ language: python
 python:
   - "3.6"
 install:
+  - sudo apt-get update
+  - sudo apt-get install libxmlsec1 libxmlsec1-dev
   - pip install -r requirements.txt
   - pip install pycodestyle
   - pip install coverage
   - pip install coveralls
-  - sudo apt-get update
-  - sudo apt-get install libxmlsec1 libxmlsec1-dev
 before_script:
   - cp sampleproj/manage.py manage.py
   - python manage.py migrate --noinput --settings=sampleproj.settings.travis
