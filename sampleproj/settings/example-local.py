@@ -29,6 +29,10 @@ INSTALLED_APPS += (
     'django_filters',
 )
 
+AUTHENTICATION_BACKENDS += (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 MIDDLEWARE_CLASSES += (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -44,6 +48,35 @@ STATICFILES_FINDERS = (
 
 MEDIA_ROOT = '/vagrant/'
 MEDIA_URL = '/media/'
+
+MOCK_SAML_ATTRIBUTES = {
+    'uwnetid': ['javerage'],
+    'affiliations': ['student', 'member'],
+    'eppn': ['javerage@washington.edu'],
+    'scopedAffiliations': ['student@washington.edu', 'member@washington.edu'],
+    'isMemberOf': ['u_test_group', 'u_test_another_group'],
+}
+
+DJANGO_LOGIN_MOCK_SAML = {
+    'NAME_ID': 'mock-nameid',
+    'SESSION_INDEX': 'mock-session',
+    'SAML_USERS': [
+        {
+            "username": <some username>,
+            "password": <some password>,
+            "email": <some email>,
+            "MOCK_ATTRIBUTES" : {
+                'uwnetid': [<some username>],
+                'affiliations': ['student', 'member'],
+                'eppn': ['javerage@washington.edu'],
+                'scopedAffiliations': ['student@washington.edu', 'member@washington.edu'],
+                'isMemberOf': [
+                    'u_test_group', 'u_test_another_group'
+                ],
+            }
+        }
+    ]
+}
 
 TEMPLATES = [
     {

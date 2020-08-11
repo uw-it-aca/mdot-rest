@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from rest_framework.urlpatterns import format_suffix_patterns
 from . import views
 
@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     path('uwresources/', views.UWResourceList.as_view()),
     path('uwresources/<int:pk>/', views.UWResourceDetail.as_view()),
+    path('saml/', include('uw_saml.urls')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
