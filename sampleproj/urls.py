@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('mdot_rest.urls')),
+    path('saml/', include('uw_saml.urls')),
     # path('', include('mdot.urls')),
 ]
 
