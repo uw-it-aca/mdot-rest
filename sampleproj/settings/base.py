@@ -102,3 +102,7 @@ USE_TZ = True
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
 }
+
+# Authentication Groups
+ADMIN_AUTHZ_GROUP = os.getenv("MDOT_REST_ADMIN_GROUP", "u_test_admin")
+ 
