@@ -14,64 +14,62 @@ from .base import *
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'replaceme-xxxxxxxxxxxxxxxx'
+SECRET_KEY = "replaceme-xxxxxxxxxxxxxxxx"
 
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS += (
-    'django.contrib.admin',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'django_filters',
+    "django.contrib.admin",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "django_filters",
 )
 
-AUTHENTICATION_BACKENDS += (
-    'django.contrib.auth.backends.ModelBackend',
-)
+AUTHENTICATION_BACKENDS += ("django.contrib.auth.backends.ModelBackend",)
 
 MIDDLEWARE += (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    "django.middleware.common.CommonMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
 )
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     # 'compressor.finders.CompressorFinder',
 )
 
-MEDIA_ROOT = '/vagrant/'
-MEDIA_URL = '/media/'
+MEDIA_ROOT = "/vagrant/"
+MEDIA_URL = "/media/"
 
 MOCK_SAML_ATTRIBUTES = {
-    'uwnetid': ['javerage'],
-    'affiliations': ['student', 'member'],
-    'eppn': ['javerage@washington.edu'],
-    'scopedAffiliations': ['student@washington.edu', 'member@washington.edu'],
-    'isMemberOf': ['u_test_admin'],
+    "uwnetid": ["javerage"],
+    "affiliations": ["student", "member"],
+    "eppn": ["javerage@washington.edu"],
+    "scopedAffiliations": ["student@washington.edu", "member@washington.edu"],
+    "isMemberOf": ["u_test_admin"],
 }
 
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-#                'django.template.context_processors.debug',
-#                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-#                'mdot.context_processors.less_compiled',
-#                'mdot.context_processors.google_analytics',
-#                'mdot.context_processors.devtools_bar',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                #                'django.template.context_processors.debug',
+                #                'django.template.context_processors.request',
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                #                'mdot.context_processors.less_compiled',
+                #                'mdot.context_processors.google_analytics',
+                #                'mdot.context_processors.devtools_bar',
             ],
         },
     },
