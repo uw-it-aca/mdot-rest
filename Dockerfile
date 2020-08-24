@@ -6,6 +6,7 @@ ENV PYTHONUNBUFFERED 1
 ADD . /app/
 WORKDIR /app
 
+RUN apt-get update -y && apt-get install -y libxmlsec1 libxmlsec1-dev
 # install python dependency packages (via setup.py) on container
 RUN pip install -r requirements.txt
 COPY sampleproj/manage.py /app/manage.py

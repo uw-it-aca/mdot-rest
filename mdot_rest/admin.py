@@ -1,8 +1,28 @@
+from django.conf import settings
 from django.contrib import admin
 from .models import *
 
+from uw_saml.utils import is_member_of_group
 
-@admin.register(IntendedAudience)
+
+admin_group = settings.ADMIN_AUTHZ_GROUP
+
+
+class SAMLAdminSite(admin.AdminSite):
+    def has_permission(self, request):
+        return (
+            is_member_of_group(request, admin_group) and request.user.is_active
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(SAMLAdminSite, self).__init__(*args, **kwargs)
+        self._registry.update(admin.site._registry)
+
+
+admin_site = SAMLAdminSite(name="SAMLAdmin")
+
+
+@admin.register(IntendedAudience, site=admin_site)
 class IntendedAudienceAdmin(admin.ModelAdmin):
     pass
 
@@ -12,7 +32,7 @@ class IntendedAudienceInline(admin.TabularInline):
     extra = 0
 
 
-@admin.register(ResourceLink)
+@admin.register(ResourceLink, site=admin_site)
 class ResourceLinkAdmin(admin.ModelAdmin):
     model = ResourceLink
 
@@ -23,10 +43,10 @@ class ResourceLinkInLine(admin.TabularInline):
     max_num = 4
 
 
-@admin.register(UWResource)
+@admin.register(UWResource, site=admin_site)
 class UWResourceAdmin(admin.ModelAdmin):
     inlines = [ResourceLinkInLine, IntendedAudienceInline]
-    actions = ['make_published', 'make_unpublished']
+    actions = ["make_published", "make_unpublished"]
 
     def make_published(self, request, queryset):
         rows_updated = queryset.update(published=True)
@@ -35,8 +55,10 @@ class UWResourceAdmin(admin.ModelAdmin):
         else:
             message_bit = "{0} stories were".format(rows_updated)
         self.message_user(
-            request, "{0} successfully marked as published.".format(
-                message_bit))
+            request,
+            "{0} successfully marked as published.".format(message_bit),
+        )
+
     make_published.short_description = "Mark selected resources as published"
 
     def make_unpublished(self, request, queryset):
@@ -46,7 +68,10 @@ class UWResourceAdmin(admin.ModelAdmin):
         else:
             message_bit = "{0} stories were".format(rows_updated)
         self.message_user(
-            request, "{0} successfully marked as not published.".format(
-                message_bit))
-    make_unpublished.short_description = \
+            request,
+            "{0} successfully marked as not published.".format(message_bit),
+        )
+
+    make_unpublished.short_description = (
         "Mark selected resources as not published"
+    )
