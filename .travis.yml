@@ -1,9 +1,10 @@
-sudo: false
+sudo: true
 language: python
 python:
-  - "2.7"
   - "3.6"
 install:
+  - sudo apt-get update
+  - sudo apt-get install libxmlsec1 libxmlsec1-dev
   - pip install -r requirements.txt
   - pip install pycodestyle
   - pip install coverage
