@@ -57,7 +57,7 @@ class ResourceLink(models.Model):
         (WINDOWS_PHONE, 'Windows Phone'),
     )
     link_type = models.CharField(max_length=3, choices=LINK_TYPE_CHOICES)
-    resource = models.ForeignKey('UWResource')
+    resource = models.ForeignKey('UWResource', on_delete=models.CASCADE)
     url = models.URLField()
 
     def __str__(self):

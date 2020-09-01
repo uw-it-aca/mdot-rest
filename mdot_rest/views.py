@@ -5,7 +5,7 @@ from rest_framework import generics, permissions
 
 
 class UWResourceFilter(filters.FilterSet):
-    audience = filters.CharFilter(name='intendedaudience__audience')
+    audience = filters.CharFilter(field_name='intended_audiences__audience')
 
     class Meta:
         model = UWResource

@@ -11,5 +11,8 @@ services:
       - ./mdot-rest:/app/mdot-rest
     ports:
       - "${PORT:-8000}:8000"
-    command: bash -c "python manage.py migrate --settings=sampleproj.settings.local"
-    command: bash -c "python manage.py runserver 0:8000 --settings=sampleproj.settings.local"
+    command: >
+      bash -c "rm sampleproj/db.sqlite3
+      && python manage.py migrate --settings=sampleproj.settings.local
+      && python manage.py createsuperuser --username javerage --email javerage@example.com --noinput --settings=sampleproj.settings.local
+      && python manage.py runserver 0:8000 --settings=sampleproj.settings.local"
