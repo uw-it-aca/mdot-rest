@@ -8,8 +8,8 @@ os:
   - linux
 env:
   global:
-    - RELEASE_NAME="mdot_rest"
-    - DJANGO_APP="mdot_rest"
+    - RELEASE_NAME="mdot-rest"
+    - DJANGO_APP="mdot-rest"
     - COMMIT_HASH="$(git rev-parse --short=7 HEAD)"
     - IMAGE_TAG="${RELEASE_NAME}:${COMMIT_HASH}"
     # - DEPLOY_SCRIPT_BASE=https://raw.githubusercontent.com/uw-it-aca/gcp-app-deploy/master
