@@ -13,14 +13,14 @@ env:
     - COMMIT_HASH="$(git rev-parse --short=7 HEAD)"
     - IMAGE_TAG="${RELEASE_NAME}:${COMMIT_HASH}"
     # - DEPLOY_SCRIPT_BASE=https://raw.githubusercontent.com/uw-it-aca/gcp-app-deploy/master
-  install:
-    - docker build --target app-container -t "${IMAGE_TAG}" .
-    - docker build -t "${IMAGE_TAG}-test" .
-  before_script:
-    - pip install coverage
-    - pip install coveralls
-  script:
-    - docker run -u root -it -v /tmp/coverage -e DJANGO_APP="${DJANGO_APP}" -e "ENV=localdev" -e "AUTH=SAML_MOCK" "${IMAGE_TAG}-test" bash -c ". ./travis/test.sh"
+install:
+  - docker build --target app-container -t "${IMAGE_TAG}" .
+  - docker build -t "${IMAGE_TAG}-test" .
+before_script:
+  - pip install coverage
+  - pip install coveralls
+script:
+  - docker run -u root -it -v /tmp/coverage -e DJANGO_APP="${DJANGO_APP}" -e "ENV=localdev" -e "AUTH=SAML_MOCK" "${IMAGE_TAG}-test" bash -c ". ./travis/test.sh"
 after_script:
   - cp /tmp/.coverage.* .
   - coverage combine
