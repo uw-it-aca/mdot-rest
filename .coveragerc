@@ -4,5 +4,5 @@ parallel = True
 
 [paths]
 source =
-  mdot-rest/
-  /app/mdot-rest/
+  mdot_rest/
+  /app/mdot_rest/
