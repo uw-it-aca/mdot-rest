@@ -1,0 +1,8 @@
+[run]
+source = mdot-rest
+parallel = True
+
+[paths]
+source =
+  mdot-rest/
+  /app/mdot-rest/
