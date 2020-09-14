@@ -1,4 +1,4 @@
-# MDOT APP #
+# MDOT-REST APP #
 
 A RESTful API server for mobile resources.
 
@@ -14,9 +14,9 @@ First, clone the app:
 
     $ git clone https://github.com/uw-it-aca/mdot-rest.git
 
-Navigate to the develop branch and copy the sample environment variables into your own `.env` file and change if wanted:
+Navigate to the develop branch and copy the sample environment variables into your own `.env` file and change variables if desired:
 
-    $ cd mdot
+    $ cd mdot-rest
     $ git checkout develop
     $ cp sample.env .env
 
