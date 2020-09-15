@@ -14,3 +14,7 @@ services:
     environment:
       ENV: localdev
       AUTH: ${AUTH:-SAML_MOCK}
+    command: >
+      bash -c "/app/bin/python /app/manage.py migrate
+      && /app/bin/python /app/manage.py loaddata admin_user.json
+      && /app/bin/python /app/manage.py runserver 0:8000"
