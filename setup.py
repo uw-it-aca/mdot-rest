@@ -18,6 +18,7 @@ setup(
         'django-filter<2.3',
         'Pillow',
         'mock',
+        'django-storages[google]',
         'UW-Django-SAML2<2.0'
     ],
     license='Apache License, Version 2.0',
