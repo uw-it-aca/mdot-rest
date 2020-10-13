@@ -26,8 +26,7 @@ admin.autodiscover()
 admin_site.login = login_required(admin_site.login)
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('saml/', include('uw_saml.urls')),
+    path('', include('project.base_urls')),
     path('admin/', admin_site.urls),
     path('api/v1/', include('mdot_rest.urls')),
     # path('', include('mdot.urls')),

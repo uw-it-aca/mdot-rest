@@ -3,16 +3,18 @@ version: '3'
 services:
   app:
     restart: always
+    container_name: mdot-rest
     build: .
     # map the local (host) directories to their container counterparts
     # to support live-syncing
     volumes:
-      - ./sampleproj:/app/sampleproj/
       - ./mdot-rest:/app/mdot-rest
     ports:
       - "${PORT:-8000}:8000"
+    environment:
+      ENV: localdev
+      AUTH: ${AUTH:-SAML_MOCK}
     command: >
-      bash -c "rm sampleproj/db.sqlite3
-      && python manage.py migrate --settings=sampleproj.settings.local
-      && python manage.py createsuperuser --username javerage --email javerage@example.com --noinput --settings=sampleproj.settings.local
-      && python manage.py runserver 0:8000 --settings=sampleproj.settings.local"
+      bash -c "/app/bin/python /app/manage.py migrate
+      && /app/bin/python /app/manage.py loaddata admin_user.json
+      && /app/bin/python /app/manage.py runserver 0:8000"
