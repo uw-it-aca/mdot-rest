@@ -13,15 +13,24 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.conf.urls.static import static
 
+from mdot_rest.admin import admin_site
+
+
+admin.autodiscover()
+admin_site.login = login_required(admin_site.login)
+
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/v1/', include('mdot_rest.urls')),
-    # url(r'^', include('mdot.urls')),
+    # path('admin/', admin.site.urls),
+    path('saml/', include('uw_saml.urls')),
+    path('admin/', admin_site.urls),
+    path('api/v1/', include('mdot_rest.urls')),
+    # path('', include('mdot.urls')),
 ]
 
 if settings.DEBUG:
