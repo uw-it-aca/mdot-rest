@@ -54,7 +54,7 @@ ingress:
     - name: CLUSTER_CNAME
       value: test-api.mdot.uw.edu
     - name: ADMIN_AUTHZ_GROUP
-      value: 'u_test_admin'
+      value: 'u_acadev_mdot-admin'
   externalSecrets:
     enabled: true
     secrets:
