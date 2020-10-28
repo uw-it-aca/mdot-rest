@@ -63,8 +63,6 @@ ingress:
         data:
           - name: django-secret
             property: django-secret
-          - name: google-analytics-key
-            property: google-analytics-key
           - name: storage-project-id
             property: storage-project-id
           - name: storage-bucket-name
@@ -96,10 +94,6 @@ ingress:
       name: DJANGO_SECRET
       secretName: test-api.mdot.uw.edu-secrets
       secretKey: django-secret
-    googleAnalyticsKey:
-      name: GOOGLE_ANALYTICS_KEY
-      secretName: test-api.mdot.uw.edu-secrets
-      secretKey: google-analytics-key
     storageProjectId:
       name: STORAGE_PROJECT_ID
       secretName: test-api.mdot.uw.edu-secrets
