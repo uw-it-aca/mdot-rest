@@ -1,4 +1,4 @@
-FROM acait/django-container:1.0.38 as app-container
+FROM acait/django-container:1.1.8 as app-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -9,11 +9,12 @@ ADD --chown=acait:acait requirements.txt /app/
 ADD --chown=acait:acait README.md /app/
 
 RUN /app/bin/pip install -r requirements.txt
+RUN . /app/bin/activate && pip install mysqlclient
 
 ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
 
-FROM acait/django-test-container:1.0.38 as app-test-container
+FROM acait/django-test-container:1.1.8 as app-test-container
 
-COPY --from=0 /app/ /app/
-COPY --from=0 /static/ /static/
+COPY --from=app-container /app/ /app/
+COPY --from=app-container /static/ /static/
