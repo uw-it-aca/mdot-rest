@@ -1,12 +1,20 @@
-#generic python 3.6 image
-FROM python:3.6
-ENV PYTHONUNBUFFERED 1
+FROM acait/django-container:1.1.8 as app-container
 
-# copy contents of repo into an 'app' directory on container
-ADD . /app/
-WORKDIR /app
+USER root
+RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
+USER acait
 
-RUN apt-get update -y && apt-get install -y libxmlsec1 libxmlsec1-dev
-# install python dependency packages (via setup.py) on container
-RUN pip install -r requirements.txt
-COPY sampleproj/manage.py /app/manage.py
+ADD --chown=acait:acait setup.py /app/
+ADD --chown=acait:acait requirements.txt /app/
+ADD --chown=acait:acait README.md /app/
+
+RUN /app/bin/pip install -r requirements.txt
+RUN . /app/bin/activate && pip install mysqlclient
+
+ADD --chown=acait:acait . /app/
+ADD --chown=acait:acait docker/ project/
+
+FROM acait/django-test-container:1.1.8 as app-test-container
+
+COPY --from=app-container /app/ /app/
+COPY --from=app-container /static/ /static/
