@@ -23,14 +23,14 @@ ingress:
     enabled: true
   externalService:
     enabled: true
-    name: mdot-rest-db-service
+    name: mdot-db-service
     type: ClusterIP
-    serviceAddress: 104.198.109.182  # change to match db
+    serviceAddress: 172.18.0.37  # change to match db
     servicePort: 3306
   database:
     engine: mysql
-    name: mdot_rest_test
-    hostname: mdot-rest-db-service
+    name: api_test
+    hostname: mdot-db-service
     secretName: test-api.mdot.uw.edu-sql-secrets
   repo: mdot-rest
   instance: test
