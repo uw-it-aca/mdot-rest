@@ -14,6 +14,8 @@ RUN . /app/bin/activate && pip install mysqlclient
 ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
 
+RUN . /app/bin/activate && python manage.py collectstatic --noinput
+
 FROM acait/django-test-container:1.1.8 as app-test-container
 
 COPY --from=app-container /app/ /app/
