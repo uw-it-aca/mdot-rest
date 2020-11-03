@@ -35,5 +35,5 @@ REST_FRAMEWORK = {
 }
 
 # Authentication Groups
-ADMIN_AUTHZ_GROUP = os.getenv('MDOT_REST_ADMIN_GROUP', 'u_test_admin')
+ADMIN_AUTHZ_GROUP = os.getenv('ADMIN_AUTHZ_GROUP', 'u_test_admin')
  
