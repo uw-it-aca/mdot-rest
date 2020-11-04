@@ -54,7 +54,7 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: test-api.mdot.uw.edu
   - name: ADMIN_AUTHZ_GROUP
-    value: 'u_acadev_mdot-admin'
+    value: 'u_acadev_mdot-admins'
 externalSecrets:
   enabled: true
   secrets:
