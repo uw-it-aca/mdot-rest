@@ -14,12 +14,12 @@ ingress:
   enabled: true
   tls:
     mdot-rest:
-      secretName: prod-api.uw.edu-ingress-cert
+      secretName: prod-api.mdot.uw.edu-ingress-cert
       hosts:
-        - api.mdot.uw.edu
+        - prod-api.mdot.uw.edu
   hosts:
     mdot-rest:
-      host: api.mdot.uw.edu
+      host: prod-api.mdot.uw.edu
       paths:
         - "/"
   annotations:
@@ -30,7 +30,7 @@ lifecycle:
   preStop:
     enabled: true
 affinity:
-   podsSpanNodes: true
+  podsSpanNodes: true
 readiness:
   enabled: true
 externalService:
@@ -57,16 +57,18 @@ gcsCredentials:
 cronjob:
   enabled: false
 environmentVariables:
-  - name: ENV
-    value: prod
-  - name: AUTH
-    value: SAML
-  - name: SAML_ENTITY_ID
-    value: https://api.mdot.uw.edu/saml2
-  - name: CLUSTER_CNAME
-    value: api.mdot.uw.edu
   - name: ADMIN_AUTHZ_GROUP
     value: 'u_acadev_mdot-admin'   # change to match?
+  - name: AUTH
+    value: SAML
+  - name: CLUSTER_CNAME
+    value: api.mdot.uw.edu
+  - name: ENV
+    value: prod
+  - name: SAML_ENTITY_ID
+    value: https://api.mdot.uw.edu/saml2
+  - name: WEBSERVER
+    value: nginx
 externalSecrets:
   enabled: true
   secrets:
