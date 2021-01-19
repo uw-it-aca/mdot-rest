@@ -62,7 +62,7 @@ environmentVariables:
   - name: AUTH
     value: SAML
   - name: CLUSTER_CNAME
-    value: api.mdot.uw.edu
+    value: prod-api.mdot.uw.edu
   - name: ENV
     value: prod
   - name: SAML_ENTITY_ID
