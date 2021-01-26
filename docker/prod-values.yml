@@ -25,6 +25,7 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
 lifecycle:
   enabled: true
   preStop:
@@ -37,7 +38,7 @@ externalService:
   enabled: true
   name: mdot-api-db-service
   type: ClusterIP
-  serviceAddress: 172.18.0.37  # change to match db
+  serviceAddress: 172.18.0.37
   servicePort: 3306
 database:
   engine: mysql
@@ -58,7 +59,7 @@ cronjob:
   enabled: false
 environmentVariables:
   - name: ADMIN_AUTHZ_GROUP
-    value: 'u_acadev_mdot-admin'   # change to match?
+    value: 'u_acadev_mdot-admins'
   - name: AUTH
     value: SAML
   - name: CLUSTER_CNAME
