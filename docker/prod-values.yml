@@ -58,7 +58,7 @@ cronjob:
   enabled: false
 environmentVariables:
   - name: ADMIN_AUTHZ_GROUP
-    value: 'u_acadev_mdot-admin'   # change to match?
+    value: 'u_acadev_mdot-admins'   # change to match?
   - name: AUTH
     value: SAML
   - name: CLUSTER_CNAME
