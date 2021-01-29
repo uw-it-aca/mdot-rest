@@ -36,7 +36,7 @@ database:
 repo: mdot-rest
 instance: test
 image:
-  repository: registry.hub.docker.com/acait/mdot-rest
+  repository: gcr.io/uw-it-axdd/mdot-rest
   tag: IMAGE_TAG
 memcached:
   enabled: false

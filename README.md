@@ -1,5 +1,8 @@
 # MDOT-REST APP #
 
+[![Build Status](https://github.com/uw-it-aca/mdot-rest/workflows/Build%2C%20Test%20and%20Deploy/badge.svg?branch=master)](https://github.com/uw-it-aca/mdot-rest/actions)
+[![Coverage Status](https://coveralls.io/repos/github/uw-it-aca/mdot-rest/badge.svg?branch=master)](https://coveralls.io/github/uw-it-aca/mdot-rest?branch=master)
+
 A RESTful API server for mobile resources.
 
 ## Installation ##
