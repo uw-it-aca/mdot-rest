@@ -36,7 +36,7 @@ database:
 repo: mdot-rest
 instance: test
 image:
-  repository: gcr.io/uw-it-axdd/mdot-rest
+  repository: gcr.io/uwit-mci-axdd/mdot-rest
   tag: IMAGE_TAG
 memcached:
   enabled: false
