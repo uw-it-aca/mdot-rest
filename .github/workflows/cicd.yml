@@ -40,9 +40,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, develop, feature/cache]
+    branches: [main, master, qa, develop, feature/eval-me]
   pull_request:
-    branches: [main, master, qa, develop, feature/cache]
+    branches: [main, master, qa, develop, feature/eval-me]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -149,7 +149,7 @@ jobs:
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
 
       - name: Deploy Evaluation Branch
-        if: steps.cicd.outputs.git_repo_branch == 'feature/cache'
+        if: steps.cicd.outputs.git_repo_branch == 'feature/eval-me'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
