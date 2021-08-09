@@ -10,7 +10,7 @@ A RESTful API server for mobile resources.
 ### Prerequisites ###
 To run the app, you must have the following installed:
 * Docker
-* Docker-compose
+* Docker-compose (unnecessary for newer versions of Docker)
 
 ### Steps to run ###
 First, clone the app:
@@ -25,9 +25,11 @@ Navigate to the develop branch and copy the sample environment variables into yo
 
 Then, run the following command to build your docker container:
 
-    $ docker-compose up --build
+    $ docker compose up --build
 
-You should see the server running when viewing http://localhost:8000 (or at the port set in your `.env` file)
+`docker compose` may be `docker-compose` on older versions of Docker.
+
+You should see the server running when viewing http://localhost:8000/api/v1/uwresources/ (or at the port set in your `.env` file with `/api/v1/uwresources/`)
 
 ## Development ##
 
@@ -35,11 +37,11 @@ You should see the server running when viewing http://localhost:8000 (or at the 
 
 To rebuild the docker container from scratch, run: 
 
-    $ docker-compose up --build
+    $ docker compose up --build
 
 Otherwise, just run:
 
-    $ docker-compose up
+    $ docker compose up
 
 
 ### Running unit tests inside the Docker container ###
