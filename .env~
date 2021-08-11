@@ -1,7 +1,0 @@
-# Copy this file to .env
-
-# Uncomment to set a custom port to run on
-#PORT=8002
-
-# This tells Django what settings to use.
-DJANGO_SETTINGS_MODULE = sampleproj.settings.local
