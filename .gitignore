@@ -55,4 +55,4 @@ target/
 
 # mdot-rest
 .env
-.env~
+.*~
