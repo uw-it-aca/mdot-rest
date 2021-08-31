@@ -1,4 +1,3 @@
-# FROM acait/django-container:1.2.5 as app-container
 FROM gcr.io/uwit-mci-axdd/django-container:1.3.3 as app-container
 
 USER root
@@ -20,7 +19,6 @@ RUN chmod u+x /scripts/app_deploy.sh
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
 
-# FROM acait/django-test-container:1.2.5 as app-test-container
 FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.3 as app-test-container
 
 COPY --from=app-container /app/ /app/
