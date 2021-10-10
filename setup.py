@@ -13,7 +13,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'setuptools',
-        'django>3.0,<3.1',
+        'django>3.2,<3.3',
         'djangorestframework',
         'django-filter<2.5',
         'Pillow',
