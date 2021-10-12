@@ -13,9 +13,9 @@ setup(
     include_package_data=True,
     install_requires=[
         'setuptools',
-        'django>3.2,<3.3',
+        'django~=3.2',
         'djangorestframework',
-        'django-filter<2.5',
+        'django-filter~=2.4',
         'Pillow',
         'mock',
         'django-storages[google]',
