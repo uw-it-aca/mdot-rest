@@ -5,7 +5,8 @@
         "fields": {
             "username": "javerage",
             "email": "javerage@example.com",
-            "is_superuser": true
+            "is_superuser": true,
+            "is_staff": true
         }
             
     }
