@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.core.files.base import ContentFile
 from django.db.models import ImageField
 from django.db.models.fields.files import ImageFieldFile
