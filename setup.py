@@ -13,13 +13,13 @@ setup(
     include_package_data=True,
     install_requires=[
         'setuptools',
-        'django>2.0,<2.1',
+        'django~=3.2',
         'djangorestframework',
-        'django-filter<2.3',
+        'django-filter~=2.4',
         'Pillow',
         'mock',
         'django-storages[google]',
-        'UW-Django-SAML2<2.0'
+        'UW-Django-SAML2'
     ],
     license='Apache License, Version 2.0',
     description='A RESTful API server for references to mobile resources.',

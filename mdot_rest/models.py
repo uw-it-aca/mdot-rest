@@ -1,10 +1,10 @@
-from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.db import models
 from .optimizedpngfield import OptimizedPNGImageField
 
 
-@python_2_unicode_compatible
 class UWResource(models.Model):
     """ Represents metadata about a resource we want to direct users to.
     """
@@ -25,7 +25,6 @@ class UWResource(models.Model):
         return self.title
 
 
-@python_2_unicode_compatible
 class IntendedAudience(models.Model):
     """ Represents audiences we want to advertise the resource to. Examples
         include affiliation (student, staff, faculty) or class standing
@@ -41,7 +40,6 @@ class IntendedAudience(models.Model):
         default_related_name = 'intended_audiences'
 
 
-@python_2_unicode_compatible
 class ResourceLink(models.Model):
     """ Represents a link to launch the resource, based on what sort of
         device the link is displayed on.

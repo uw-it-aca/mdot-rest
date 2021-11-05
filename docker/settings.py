@@ -13,10 +13,12 @@ INSTALLED_APPS += (
     "django_filters",
 )
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 # settings for local development
 if os.getenv('AUTH', 'NONE') == 'SAML_MOCK':
     MOCK_SAML_ATTRIBUTES['isMemberOf'] = ['u_test_admin']
-    
+
 if DEBUG:
     MEDIA_ROOT = '/app/'
     MEDIA_URL = '/media/'
@@ -36,4 +38,3 @@ REST_FRAMEWORK = {
 
 # Authentication Groups
 ADMIN_AUTHZ_GROUP = os.getenv('ADMIN_AUTHZ_GROUP', 'u_test_admin')
- 

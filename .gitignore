@@ -55,3 +55,8 @@ target/
 
 # mdot-rest
 .env
+.*~
+
+# DS_Store
+.DS_Store
+
