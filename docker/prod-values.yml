@@ -1,7 +1,7 @@
 autoscaling:
   enabled: true
   minReplicas: 2
-  maxReplicas: 4
+  maxReplicas: 10
 targetAverageUtilization: 100
 ingress:
   enabled: true
