@@ -81,7 +81,7 @@ externalSecrets:
         - name: password
           property: password
     - name: test-api.mdot.uw.edu-ic-certs
-      externalKey: axdd/kv/data/mdot/test/ic-certs
+      externalKey: axdd/kv/data/scout/test-manager/test/ic-certs
       data:
         - name: test-api.mdot.uw.edu-ic.cert
           property: test-api.mdot.uw.edu-ic.cert
