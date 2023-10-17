@@ -34,20 +34,19 @@ externalService:
   enabled: true
   name: mdot-api-db-service
   type: ClusterIP
-  serviceAddress: 172.18.0.37
-  servicePort: 3306
+  serviceAddress: 172.18.1.206
+  servicePort: 5432
 database:
-  engine: mysql
+  engine: postgres
   name: api_prod
   hostname: mdot-api-db-service
   secretName: prod-api.mdot.uw.edu-sql-secrets
 repo: mdot-rest
 instance: prod
-image:
-  repository: gcr.io/uwit-mci-axdd/mdot-rest
-  tag: IMAGE_TAG
 memcached:
   enabled: false
+certs:
+  mounted: false
 gcsCredentials:
   mounted: true
   secretName: prod-api.mdot.uw.edu-gc-service-credentials
@@ -68,7 +67,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: prod-api.mdot.uw.edu-secrets
-      externalKey: axdd/kv/data/mdot/prod-api/secrets
+      externalKey: mdot/prod-api/secrets
       data:
         - name: django-secret
           property: django-secret
@@ -77,24 +76,24 @@ externalSecrets:
         - name: storage-bucket-name
           property: storage-bucket-name
     - name: prod-api.mdot.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/mdot/prod-api/sql-secrets
+      externalKey: mdot/prod-api/sql-secrets
       data:
         - name: username
           property: username
         - name: password
           property: password
     - name: prod-api.mdot.uw.edu-ic-certs
-      externalKey: axdd/kv/data/mdot/prod-api/ic-certs
+      externalKey: mdot/prod-api/ic-certs
       data:
         - name: prod-api.mdot.uw.edu-ic.cert
           property: prod-api.mdot.uw.edu-ic.cert
     - name: prod-api.mdot.uw.edu-uw-idp-cert
-      externalKey: axdd/kv/data/idp-cert
+      externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert
     - name: prod-api.mdot.uw.edu-gc-service-credentials
-      externalKey: axdd/kv/data/mdot/prod-api/gc-service-credentials
+      externalKey: mdot/prod-api/gc-service-credentials
       data:
         - name: credentials.json
           property: credentials.json
