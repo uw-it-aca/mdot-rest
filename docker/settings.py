@@ -29,7 +29,7 @@ else:
             'OPTIONS': {
                 'project_id': os.getenv('STORAGE_PROJECT_ID', ''),
                 'bucket_name': os.getenv('STORAGE_BUCKET_NAME', ''),
-                'location': os.path.join(os.getenv('ENV', 'media')),
+                'location': os.path.join(os.getenv('ENV', ''), 'media'),
                 'credentials': service_account.Credentials.from_service_account_file(
                     '/gcs/credentials.json'),
             }
@@ -38,6 +38,7 @@ else:
             'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
         },
     }
+    CSRF_TRUSTED_ORIGINS = ['https://' + os.getenv('CLUSTER_CNAME')]
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
