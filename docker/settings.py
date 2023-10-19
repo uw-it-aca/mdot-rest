@@ -19,18 +19,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 if os.getenv('AUTH', 'NONE') == 'SAML_MOCK':
     MOCK_SAML_ATTRIBUTES['isMemberOf'] = ['u_test_admin']
 
-if DEBUG:
+if os.getenv('ENV', 'localdev') == 'localdev':
     MEDIA_ROOT = '/app/'
     MEDIA_URL = '/media/'
-
-if not DEBUG:
-    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-    GS_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME', '')
-    GS_PROJECT_ID = os.getenv('STORAGE_PROJECT_ID', '')
-    GS_LOCATION = os.path.join(os.getenv('ENV'), 'media')
-    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        '/gcs/credentials.json'
-    )
+else:
+    STORAGES = {
+        'default': {
+            'BACKEND': 'storages.backends.gcloud.GoogleCloudStorage',
+            'OPTIONS': {
+                'project_id': os.getenv('STORAGE_PROJECT_ID', ''),
+                'bucket_name': os.getenv('STORAGE_BUCKET_NAME', ''),
+                'location': os.path.join(os.getenv('ENV', ''), 'media'),
+                'credentials': service_account.Credentials.from_service_account_file(
+                    '/gcs/credentials.json'),
+            }
+        },
+        'staticfiles': {
+            'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+        },
+    }
+    CSRF_TRUSTED_ORIGINS = ['https://' + os.getenv('CLUSTER_CNAME')]
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
